@@ -3,6 +3,7 @@ package com.insa.VGDream.joueurs;
 import com.insa.VGDream.jeux.Jeu;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import java.io.Serializable;
@@ -14,7 +15,7 @@ public class Joueur implements Serializable {
     @Id
     private String id;
     private String prenom, nom, password;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private Collection<Jeu> jeux;
 
     public Joueur(String id, String prenom, String nom, String password, Collection<Jeu> jeux) {

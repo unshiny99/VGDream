@@ -1,37 +1,26 @@
 package com.insa.VGDream.jeux;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.insa.VGDream.joueurs.Joueur;
-
-import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 
-@Entity
-public class Jeu implements Serializable {
+public class JeuDTO implements Serializable {
     private static final long serialVersionUID = 87638236982367L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String nom, studioDev, description, categorie;
     private Date dateSortie;
-    @ManyToMany(mappedBy = "jeux")
-    private Collection<Joueur> joueurs;
 
-    public Jeu() {
+    public JeuDTO() {
         super();
     }
 
-    public Jeu(int id, String nom, String studioDev, String description, String categorie, Date dateSortie, Collection<Joueur> joueurs) {
+    public JeuDTO(int id, String nom, String studioDev, String description, String categorie, Date dateSortie) {
         this.id = id;
         this.nom = nom;
         this.studioDev = studioDev;
         this.description = description;
         this.categorie=categorie;
         this.dateSortie = dateSortie;
-        this.joueurs = joueurs;
     }
 
     public int getId() {
@@ -80,13 +69,5 @@ public class Jeu implements Serializable {
 
     public void setDateSortie(Date dateSortie) {
         this.dateSortie = dateSortie;
-    }
-
-    public Collection<Joueur> getJoueurs() {
-        return joueurs;
-    }
-
-    public void setJoueurs(Collection<Joueur> joueurs) {
-        this.joueurs = joueurs;
     }
 }

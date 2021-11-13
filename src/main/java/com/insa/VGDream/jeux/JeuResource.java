@@ -1,6 +1,7 @@
 package com.insa.VGDream.jeux;
 
 import com.insa.VGDream.joueurs.Joueur;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.ws.rs.*;
@@ -25,7 +26,13 @@ public class JeuResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Iterable<Jeu> getJeux() {
-        return jeuRepository.findAll();
+    public List<JeuDTO> getJeux() {
+        ModelMapper modelMapper = new ModelMapper();
+        List<JeuDTO> jeux = new ArrayList<>();
+        for(Jeu jeu : jeuRepository.findAll()){
+            JeuDTO jeuDTO = modelMapper.map(jeu,JeuDTO.class);
+            jeux.add(jeuDTO);
+        }
+        return jeux;
     }
 }
