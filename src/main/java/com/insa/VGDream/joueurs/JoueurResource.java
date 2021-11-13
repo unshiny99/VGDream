@@ -10,9 +10,6 @@ import java.util.Arrays;
 @Path("joueurs")
 public class JoueurResource {
 
-    static Joueur joueur1 = new Joueur("massar", "Massar", "Abbas", "password", new ArrayList<>());
-    static ArrayList<Joueur> joueurs = new ArrayList<Joueur>(Arrays.asList(joueur1));
-
     @Autowired
     private JoueurRepository joueurRepository;
 
@@ -25,7 +22,7 @@ public class JoueurResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public ArrayList<Joueur> getJoueurs(){
-        return joueurs;
+    public Iterable<Joueur> getJoueurs(){
+        return joueurRepository.findAll();
     }
 }

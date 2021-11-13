@@ -12,8 +12,6 @@ import java.util.List;
 
 @Path("jeux")
 public class JeuResource {
-    static Jeu jeu1 = new Jeu(1,"payday","randomWare","collaborative game",new Date(), new ArrayList<>());
-    List<Jeu> jeux = new ArrayList<>(Arrays.asList(jeu1));
 
     @Autowired
     private JeuRepository jeuRepository;
@@ -27,8 +25,7 @@ public class JeuResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Jeu> getJeux() {
-        //return jeuRepository.findAll();
-        return jeux;
+    public Iterable<Jeu> getJeux() {
+        return jeuRepository.findAll();
     }
 }
