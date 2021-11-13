@@ -10,7 +10,7 @@ import java.util.Arrays;
 @Path("joueurs")
 public class JoueurResource {
 
-    static Joueur joueur1 = new Joueur("massar", "Massar", "Abbas", "password");
+    static Joueur joueur1 = new Joueur("massar", "Massar", "Abbas", "password", new ArrayList<>());
     static ArrayList<Joueur> joueurs = new ArrayList<Joueur>(Arrays.asList(joueur1));
 
     @Autowired

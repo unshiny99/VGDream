@@ -1,10 +1,10 @@
 package com.insa.VGDream.jeux;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.insa.VGDream.joueurs.Joueur;
+
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 
 @Entity
@@ -16,18 +16,20 @@ public class Jeu implements Serializable {
     private int id;
     private String nom, studioDev, description;
     private Date dateSortie;
+    @ManyToMany(mappedBy = "jeux")
+    private Collection<Joueur> joueurs;
 
     public Jeu() {
         super();
     }
 
-    public Jeu(int id, String nom, String studioDev, String description, Date dateSortie) {
-        super();
+    public Jeu(int id, String nom, String studioDev, String description, Date dateSortie, Collection<Joueur> joueurs) {
         this.id = id;
         this.nom = nom;
         this.studioDev = studioDev;
         this.description = description;
         this.dateSortie = dateSortie;
+        this.joueurs = joueurs;
     }
 
     public int getId() {
@@ -68,5 +70,13 @@ public class Jeu implements Serializable {
 
     public void setDateSortie(Date dateSortie) {
         this.dateSortie = dateSortie;
+    }
+
+    public Collection<Joueur> getJoueurs() {
+        return joueurs;
+    }
+
+    public void setJoueurs(Collection<Joueur> joueurs) {
+        this.joueurs = joueurs;
     }
 }

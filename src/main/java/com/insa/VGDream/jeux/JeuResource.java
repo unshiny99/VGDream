@@ -12,7 +12,7 @@ import java.util.List;
 
 @Path("jeux")
 public class JeuResource {
-    static Jeu jeu1 = new Jeu(1,"payday","randomWare","collaborative game",new Date());
+    static Jeu jeu1 = new Jeu(1,"payday","randomWare","collaborative game",new Date(), new ArrayList<>());
     List<Jeu> jeux = new ArrayList<>(Arrays.asList(jeu1));
 
     @Autowired
