@@ -21,7 +21,7 @@ public class JeuResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Iterable<Jeu> getJeux() {
+    public List<Jeu> getJeux() {
         //return jeuRepository.findAll();
         return jeux;
     }

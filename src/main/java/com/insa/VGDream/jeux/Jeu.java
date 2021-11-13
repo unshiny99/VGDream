@@ -1,13 +1,15 @@
 package com.insa.VGDream.jeux;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Date;
 
+@Entity
 public class Jeu implements Serializable {
-    private static final long serialVersionUID = -8537962680206576813L;
+    private static final long serialVersionUID = 87638236982367L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
