@@ -11,3 +11,14 @@
 
 * Un joueur pourra **s'inscrire** sur notre plateforme, **mettre à jour ses informations** personnelles, et même **supprimer son compte** s'il le souhaite.
 * Une liste de tous les joueurs pourra être affichée à titre indicatif et statistique.
+
+## Utilisation
+### Ne pas oublier d'activer hsqldb sur la version locale !
+Pour cela, lancer les commandes suivantes :
+- ```cd hsqldb/lib```
+- ```java -cp hsqldb.jar org.hsqldb.server.Server --database.0 file:mydb --dbname.0 VGDreamDB```
+
+Puis, dans un second terminal :
+- ```cd hsqldb/lib```
+- ```java -cp hsqldb.jar org.hsqldb.util.DatabaseManagerSwing```
+- Dans la fenêtre graphique, remplacer le champ URL par : `jdbc:hsqldb:hsql://localhost/VGDreamDB`

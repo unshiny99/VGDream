@@ -1,6 +1,5 @@
 package com.insa.VGDream.jeux;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.insa.VGDream.joueurs.Joueur;
 
 import javax.persistence.*;
@@ -17,7 +16,7 @@ public class Jeu implements Serializable {
     private int id;
     private String nom, studioDev, description, categorie;
     private Date dateSortie;
-    @ManyToMany(mappedBy = "jeux")
+    @ManyToMany()
     private Collection<Joueur> joueurs;
 
     public Jeu() {
