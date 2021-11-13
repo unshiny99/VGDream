@@ -1,8 +1,12 @@
 package com.insa.VGDream.joueurs;
 
+import com.insa.VGDream.jeux.Jeu;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import java.io.Serializable;
+import java.util.Collection;
 
 @Entity
 public class Joueur implements Serializable {
@@ -10,13 +14,15 @@ public class Joueur implements Serializable {
     @Id
     private String id;
     private String prenom, nom, password;
+    @ManyToMany
+    private Collection<Jeu> jeux;
 
-    public Joueur(String id, String prenom, String nom, String password) {
-        super();
+    public Joueur(String id, String prenom, String nom, String password, Collection<Jeu> jeux) {
         this.id = id;
         this.prenom = prenom;
         this.nom = nom;
         this.password = password;
+        this.jeux = jeux;
     }
 
     public Joueur() {
@@ -53,5 +59,13 @@ public class Joueur implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Collection<Jeu> getJeux() {
+        return jeux;
+    }
+
+    public void setJeux(Collection<Jeu> jeux) {
+        this.jeux = jeux;
     }
 }
