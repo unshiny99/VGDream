@@ -16,7 +16,8 @@ public class Jeu implements Serializable {
     private int id;
     private String nom, studioDev, description, categorie;
     private Date dateSortie;
-    @ManyToMany()
+
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "jeux")
     private Collection<Joueur> joueurs;
 
     public Jeu() {
