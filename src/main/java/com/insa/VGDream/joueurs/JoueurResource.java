@@ -2,6 +2,7 @@ package com.insa.VGDream.joueurs;
 
 import com.insa.VGDream.jeux.Jeu;
 import com.insa.VGDream.jeux.JeuDTO;
+import org.hibernate.Hibernate;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -25,18 +26,14 @@ public class JoueurResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Iterable<Joueur> getJoueurs() {
-        /*
+    public Iterable<JoueurDTO> getJoueurs() {
         ModelMapper modelMapper = new ModelMapper();
-        List<Joueur> joueurs = new ArrayList<>();
+        List<JoueurDTO> joueurs = new ArrayList<>();
+
         for(Joueur joueur : joueurRepository.findAll()){
-            for (Jeu jeu : joueur.getJeux()) {
-                modelMapper.map(jeu,JeuDTO.class);
-            }
-            joueurs.add(joueur);
+            JoueurDTO joueurDTO = modelMapper.map(joueur,JoueurDTO.class);
+            joueurs.add(joueurDTO);
         }
         return joueurs;
-         */
-        return joueurRepository.findAll();
     }
 }

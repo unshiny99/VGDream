@@ -2,24 +2,21 @@ package com.insa.VGDream.joueurs;
 
 import com.insa.VGDream.jeux.Jeu;
 import com.insa.VGDream.jeux.JeuDTO;
-import org.hibernate.Hibernate;
-import org.modelmapper.ModelMapper;
 
-import javax.persistence.*;
-import java.io.Serializable;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import java.util.Collection;
 
-@Entity
-public class Joueur implements Serializable {
+public class JoueurDTO {
     private static final long serialVersionUID = 87638236982367L;
-    @Id
+
     private String id;
     private String prenom, nom, password;
 
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "joueurs")
-    private Collection<Jeu> jeux;
+    private Collection<JeuDTO> jeux;
 
-    public Joueur(String id, String prenom, String nom, String password, Collection<Jeu> jeux) {
+    public JoueurDTO(String id, String prenom, String nom, String password, Collection<JeuDTO> jeux) {
         this.id = id;
         this.prenom = prenom;
         this.nom = nom;
@@ -27,7 +24,7 @@ public class Joueur implements Serializable {
         this.jeux = jeux;
     }
 
-    public Joueur() {
+    public JoueurDTO() {
         super();
     }
 
@@ -63,11 +60,11 @@ public class Joueur implements Serializable {
         this.password = password;
     }
 
-    public Collection<Jeu> getJeux() {
+    public Collection<JeuDTO> getJeux() {
         return jeux;
     }
 
-    public void setJeux(Collection<Jeu> jeux) {
+    public void setJeux(Collection<JeuDTO> jeux) {
         this.jeux = jeux;
     }
 }
