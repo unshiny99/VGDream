@@ -13,7 +13,7 @@ public class Jeu implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
     private String nom, studioDev, description, categorie;
     private Date dateSortie;
 
@@ -24,7 +24,7 @@ public class Jeu implements Serializable {
         super();
     }
 
-    public Jeu(int id, String nom, String studioDev, String description, String categorie, Date dateSortie, Collection<Joueur> joueurs) {
+    public Jeu(Long id, String nom, String studioDev, String description, String categorie, Date dateSortie, Collection<Joueur> joueurs) {
         this.id = id;
         this.nom = nom;
         this.studioDev = studioDev;
@@ -34,11 +34,11 @@ public class Jeu implements Serializable {
         this.joueurs = joueurs;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

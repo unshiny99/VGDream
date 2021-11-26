@@ -13,13 +13,13 @@ import java.util.Collection;
 public class Joueur implements Serializable {
     private static final long serialVersionUID = 87638236982367L;
     @Id
-    private String id;
+    private Long id;
     private String prenom, nom, password;
 
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "joueurs")
     private Collection<Jeu> jeux;
 
-    public Joueur(String id, String prenom, String nom, String password, Collection<Jeu> jeux) {
+    public Joueur(Long id, String prenom, String nom, String password, Collection<Jeu> jeux) {
         this.id = id;
         this.prenom = prenom;
         this.nom = nom;
@@ -39,11 +39,11 @@ public class Joueur implements Serializable {
         this.prenom = prenom;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -7,6 +7,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Path("jeux")
 public class JeuResource {
@@ -41,4 +42,14 @@ public class JeuResource {
         }
         return jeux;
     }
+
+    @DELETE
+    @Produces(MediaType.APPLICATION_JSON)
+    public Iterable<Jeu> deleteJeu(Jeu jeu) {
+        //List<JeuDTO> jeux = getJeux();
+        //Jeu jeuEntity = jeuRepository.findById(jeu.getId());
+        jeuRepository.delete(jeu);
+        return jeuRepository.findAll();
+    }
+
 }
