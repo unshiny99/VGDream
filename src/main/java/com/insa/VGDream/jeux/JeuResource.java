@@ -14,6 +14,11 @@ public class JeuResource {
     @Autowired
     private JeuRepository jeuRepository;
 
+    /**
+     * créer un jeu pour tout le monde
+     * @param jeu le jeu à créer
+     * @return la nouvelle liste de jeux
+     */
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -21,6 +26,10 @@ public class JeuResource {
         return jeuRepository.save(jeu);
     }
 
+    /**
+     * obtenir la liste complète des jeux
+     * @return la liste des jeux
+     */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<JeuDTO> getJeux() {

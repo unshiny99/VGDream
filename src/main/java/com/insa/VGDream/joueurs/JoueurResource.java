@@ -1,8 +1,5 @@
 package com.insa.VGDream.joueurs;
 
-import com.insa.VGDream.jeux.Jeu;
-import com.insa.VGDream.jeux.JeuDTO;
-import org.hibernate.Hibernate;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,6 +14,11 @@ public class JoueurResource {
     @Autowired
     private JoueurRepository joueurRepository;
 
+    /**
+     * inscription d'un joueur
+     * @param joueur le joueur à créer
+     * @return la nouvelle liste de joueurs
+     */
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -24,6 +26,10 @@ public class JoueurResource {
         return joueurRepository.save(joueur);
     }
 
+    /**
+     * obtention de la liste de tous les joueurs
+     * @return la liste concernée
+     */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Iterable<JoueurDTO> getJoueurs() {

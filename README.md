@@ -1,6 +1,9 @@
 # VGDream
 ## Video Games Dream
 
+##Développement
+* NOTE : pour les fonctions de création, voir si on retourne l'élément ou bien la nouvelle liste 
+
 ## Préambule
 * Nous avons décidé de réaliser une application de gestion de collection de jeux vidéos.
 
