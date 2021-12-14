@@ -2,7 +2,7 @@
 
 ## Développement
 * NOTE : pour les fonctions de création, voir si on retourne l'élément ou bien la nouvelle liste 
-* Réfléchir sur la technologie pour l'interface cliente (Vue.js, JQuery ?)
+* La technologie pour l'interface cliente sera JQuery
 
 ## Préambule
 * Nous avons décidé de réaliser une application de gestion de collection de jeux vidéos.
