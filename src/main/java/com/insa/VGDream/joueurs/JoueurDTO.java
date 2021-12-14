@@ -11,12 +11,12 @@ import java.util.Collection;
 public class JoueurDTO {
     private static final long serialVersionUID = 87638236982367L;
 
-    private String id;
+    private Long id;
     private String prenom, nom, password;
 
     private Collection<JeuDTO> jeux;
 
-    public JoueurDTO(String id, String prenom, String nom, String password, Collection<JeuDTO> jeux) {
+    public JoueurDTO(Long id, String prenom, String nom, String password, Collection<JeuDTO> jeux) {
         this.id = id;
         this.prenom = prenom;
         this.nom = nom;
@@ -36,11 +36,11 @@ public class JoueurDTO {
         this.prenom = prenom;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
