@@ -9,34 +9,35 @@
           crossorigin="anonymous">
 </head>
 <body>
-    <div class="container">
+    <div id="header"></div>
+    <div class="container text-center">
         <h1>Ajouter un jeu</h1>
         <p>Ajoutez votre jeu via le formulaire ci-dessous</p>
 
-        <form id="form-add-game">
-            <div class="form-group mb-3">
-                <label for="nom" class="form-label">Nom du jeu</label>
-                <input type="text" placeholder="Entrez le nom exact" id="nom">
+        <form id="form-add-game" class="col-lg-6 mx-auto">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" placeholder="Entrez le nom exact" id="nom">
+                <label for="nom">Nom du jeu</label>
             </div>
-            <div class="form-group mb-3">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" placeholder="Entrez le studio du jeu" id="studioDev">
                 <label for="studioDev">Studio de développement</label>
-                <input type="text" placeholder="Entrez le studio du jeu" id="studioDev">
             </div>
-            <div class="form-group mb-3">
+            <div class="form-floating mb-3">
+                <textarea class="form-control" placeholder="Entrez une description" id="description" style="height: 150px"></textarea>
                 <label for="description">Description</label>
-                <input type="text" placeholder="Entrez une description" id="description">
             </div>
-            <div class="form-group mb-3">
+            <div class="form-floating mb-3">
+                <input type="date" class="form-control" placeholder="Entrez la date de sortie" id="dateSortie">
                 <label for="dateSortie">Date de sortie (France)</label>
-                <input type="date" placeholder="Entrez la date de sortie" id="dateSortie">
             </div>
-            <div class="form-group mb-3">
+            <div class="form-floating mb-3">
                 <!-- avoir une liste de catégorie enregistrée en BD ? -->
+                <input type="text" class="form-control" placeholder="Entrez la catégorie" id="categorie">
                 <label for="categorie">Catégorie principale</label>
-                <input type="text" placeholder="Entrez la catégorie" id="categorie">
             </div>
             <button type="submit" class="btn btn-primary" id="save">Enregistrer</button>
-            <a href="home.html" class="d-inline-block">Retour</a>
+            <a href="home.html" class="btn btn-danger">Retour</a>
         </form>
     </div>
 
@@ -50,6 +51,7 @@
     </script>
     <script>
         $(function () {
+            $("#header").load("header.html");
             $('#form-add-game').submit(function(e){
                 e.preventDefault();
                 $.ajax({
