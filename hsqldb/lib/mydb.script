@@ -28,7 +28,7 @@ SET FILES NIO TRUE
 SET FILES NIO SIZE 256
 SET FILES LOG TRUE
 SET FILES LOG SIZE 50
-SET FILES CHECK 1719
+SET FILES CHECK 1772
 SET DATABASE COLLATION "SQL_TEXT" PAD SPACE
 CREATE USER SA PASSWORD DIGEST 'd41d8cd98f00b204e9800998ecf8427e'
 ALTER USER SA SET LOCAL TRUE
@@ -51,3 +51,6 @@ SET SCHEMA SYSTEM_LOBS
 INSERT INTO BLOCKS VALUES(0,2147483647,0)
 SET SCHEMA PUBLIC
 INSERT INTO JEU VALUES(5,'2013-08-15 02:00:00.000000','Payday 2 reprend cinq personnages du premier opus : Dallas, Chains, Wolf et Hoxton . Ces personnalit\u00e9s sont incarn\u00e9es par les joueurs lors des parties, mais ne d\u00e9finissent pas la (ou les) sp\u00e9cialisation(s) de chaque joueur.','Payday 2','Randomware','Jeu coop\u00e9ratif')
+INSERT INTO JEU_JOUEURS VALUES(5,1)
+INSERT INTO JOUEUR VALUES(1,'Fr\u00e9meaux','1234','Maxime')
+INSERT INTO JOUEUR VALUES(2,'Abbas','123','Massar')
