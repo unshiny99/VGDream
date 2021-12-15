@@ -25,3 +25,5 @@ Puis, dans un second terminal :
 - ```cd hsqldb/lib```
 - ```java -cp hsqldb.jar org.hsqldb.util.DatabaseManagerSwing```
 - Dans la fenêtre graphique, remplacer le champ URL par : `jdbc:hsqldb:hsql://localhost/VGDreamDB`
+
+### Lancer l'application
