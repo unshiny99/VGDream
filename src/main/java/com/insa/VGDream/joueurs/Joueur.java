@@ -13,18 +13,17 @@ public class Joueur implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String username;
     @NotEmpty
-    private String prenom, nom, password;
+    private String prenom, nom, pseudo, password;
 
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "joueurs")
     private Collection<Jeu> jeux;
 
-    public Joueur(Long id, String pseudo, String prenom, String nom, String password, Collection<Jeu> jeux) {
+    public Joueur(Long id, String prenom, String nom, String pseudo, String password, Collection<Jeu> jeux) {
         this.id = id;
-        this.username = pseudo;
         this.prenom = prenom;
         this.nom = nom;
+        this.pseudo = pseudo;
         this.password = password;
         this.jeux = jeux;
     }
@@ -41,12 +40,12 @@ public class Joueur implements Serializable {
         this.prenom = prenom;
     }
 
-    public String getUsername() {
-        return username;
+    public String getPseudo() {
+        return pseudo;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setPseudo(String pseudo) {
+        this.pseudo = pseudo;
     }
 
     public Long getId() {

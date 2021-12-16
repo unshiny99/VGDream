@@ -12,15 +12,16 @@ public class JoueurDTO {
     private static final long serialVersionUID = 87638236982367L;
 
     private Long id;
-    private String prenom, nom, password;
+    private String prenom, nom, password, pseudo;
 
     private Collection<JeuDTO> jeux;
 
-    public JoueurDTO(Long id, String prenom, String nom, String password, Collection<JeuDTO> jeux) {
+    public JoueurDTO(Long id, String prenom, String nom, String password, String pseudo, Collection<JeuDTO> jeux) {
         this.id = id;
         this.prenom = prenom;
         this.nom = nom;
         this.password = password;
+        this.pseudo = pseudo;
         this.jeux = jeux;
     }
 
@@ -66,5 +67,13 @@ public class JoueurDTO {
 
     public void setJeux(Collection<JeuDTO> jeux) {
         this.jeux = jeux;
+    }
+
+    public String getPseudo() {
+        return pseudo;
+    }
+
+    public void setPseudo(String pseudo) {
+        this.pseudo = pseudo;
     }
 }
