@@ -6,6 +6,7 @@ import org.hibernate.Hibernate;
 import org.modelmapper.ModelMapper;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.Collection;
 
@@ -13,7 +14,9 @@ import java.util.Collection;
 public class Joueur implements Serializable {
     private static final long serialVersionUID = 87638236982367L;
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @NotEmpty
     private String prenom, nom, password;
 
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "joueurs")
