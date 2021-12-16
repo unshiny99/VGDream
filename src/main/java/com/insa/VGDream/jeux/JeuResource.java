@@ -7,7 +7,6 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Path("jeux")
 public class JeuResource {
@@ -41,6 +40,20 @@ public class JeuResource {
             jeux.add(jeuDTO);
         }
         return jeux;
+    }
+
+    @GET
+    @Path("{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public JeuDTO getJeu(@PathParam("id") Long id) {
+        ModelMapper modelMapper = new ModelMapper();
+        if (jeuRepository.findById(id).isPresent()) {
+            Jeu jeu = jeuRepository.findById(id).get();
+            return modelMapper.map(jeu,JeuDTO.class);
+        }
+        else {
+            return null;
+        }
     }
 
     @DELETE

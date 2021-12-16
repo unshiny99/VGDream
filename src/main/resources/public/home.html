@@ -11,7 +11,7 @@
 </head>
 <body class="d-flex flex-column h-100">
     <div id="header"></div>
-    <div class="container text-center mt-3">
+    <div class="container text-center my-3">
         <h1>Jeux référencés sur notre site</h1>
         <div id="liste" class="row"></div>
         <p>Vous ne trouvez pas votre jeu ? <a href="ajouterJeu.html">Ajouter un jeu</a></p>
@@ -39,7 +39,7 @@
                                 + '<div class="card-body">'
                                     + '<h3 class="card-title">' + this.nom + '</h3>'
                                     + '<p class="card-text">Développé par <em>' + this.studioDev + '</em></p>'
-                                    + '<a href="#" class="btn btn-primary">Voir plus</a>'
+                                    + '<a href="detailsJeu.html?id=' + this.id + '" class="btn btn-primary">Voir plus</a>'
                                 + '</div>'
                                 + '<div class="card-footer">Sortie : ' + date.toLocaleDateString() + '</div>'
                             + '</div>'
