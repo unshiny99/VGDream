@@ -3,6 +3,8 @@ package com.insa.VGDream.jeux;
 import com.insa.VGDream.joueurs.Joueur;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -14,6 +16,7 @@ public class Jeu implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @NotEmpty
     private String nom, studioDev, description, categorie;
     private Date dateSortie;
 

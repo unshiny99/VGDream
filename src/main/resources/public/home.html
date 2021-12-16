@@ -10,7 +10,7 @@
 </head>
 <body>
     <div id="header"></div>
-    <div class="container text-center">
+    <div class="container text-center mt-3">
         <h1>Jeux référencés sur notre site</h1>
         <div id="liste" class="row"></div>
         <p>Vous ne trouvez pas votre jeu ? <a href="ajouterJeu.html">Ajouter un jeu</a></p>
@@ -29,6 +29,7 @@
             $("#header").load("header.html");
             $.get("VGDream/jeux", function (data) {
                 $.each(data, function () {
+                    var date = new Date(this.dateSortie);
                     $("#liste").append(
                         '<div class="col-lg-6 col-xl-4">' +
                             '<div class="card my-2">'
@@ -37,7 +38,7 @@
                                     + '<p class="card-text">Développé par <em>' + this.studioDev + '</em></p>'
                                     + '<a href="#" class="btn btn-primary">Voir plus</a>'
                                 + '</div>'
-                                + '<div class="card-footer">Sortie : ' + this.dateSortie + '</div>'
+                                + '<div class="card-footer">Sortie : ' + date.toLocaleDateString() + '</div>'
                             + '</div>'
                         + '</div>'
                     );

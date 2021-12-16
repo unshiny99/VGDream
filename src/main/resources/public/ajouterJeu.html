@@ -10,30 +10,33 @@
 </head>
 <body>
     <div id="header"></div>
-    <div class="container text-center">
+    <div class="container text-center mt-3">
         <h1>Ajouter un jeu</h1>
         <p>Ajoutez votre jeu via le formulaire ci-dessous</p>
 
-        <form id="form-add-game" class="col-lg-6 mx-auto">
+        <form id="form-add-game" class="col-lg-6 mx-auto needs-validation">
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" placeholder="Entrez le nom exact" id="nom">
+                <input type="text" class="form-control" placeholder="Entrez le nom exact" id="nom" name="nom" required>
                 <label for="nom">Nom du jeu</label>
+                <div class="invalid-feedback">
+                    Merci d'entrer un nom.
+                </div>
             </div>
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" placeholder="Entrez le studio du jeu" id="studioDev">
+                <input type="text" class="form-control" placeholder="Entrez le studio du jeu" id="studioDev" name="studioDev" required>
                 <label for="studioDev">Studio de développement</label>
             </div>
             <div class="form-floating mb-3">
-                <textarea class="form-control" placeholder="Entrez une description" id="description" style="height: 150px"></textarea>
+                <textarea class="form-control" placeholder="Entrez une description" id="description" name="description" style="height: 150px" required></textarea>
                 <label for="description">Description</label>
             </div>
             <div class="form-floating mb-3">
-                <input type="date" class="form-control" placeholder="Entrez la date de sortie" id="dateSortie">
+                <input type="date" class="form-control" placeholder="Entrez la date de sortie" id="dateSortie" name="dateSortie" required>
                 <label for="dateSortie">Date de sortie (France)</label>
             </div>
             <div class="form-floating mb-3">
                 <!-- avoir une liste de catégorie enregistrée en BD ? -->
-                <input type="text" class="form-control" placeholder="Entrez la catégorie" id="categorie">
+                <input type="text" class="form-control" placeholder="Entrez la catégorie" id="categorie" name="categorie" required>
                 <label for="categorie">Catégorie principale</label>
             </div>
             <button type="submit" class="btn btn-primary" id="save">Enregistrer</button>
@@ -49,11 +52,14 @@
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
             crossorigin="anonymous">
     </script>
+
     <script>
         $(function () {
             $("#header").load("header.html");
+
             $('#form-add-game').submit(function(e){
                 e.preventDefault();
+
                 $.ajax({
                     url:"VGDream/jeux",
                     type: 'post',
