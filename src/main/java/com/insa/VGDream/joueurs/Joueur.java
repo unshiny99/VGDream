@@ -1,9 +1,6 @@
 package com.insa.VGDream.joueurs;
 
 import com.insa.VGDream.jeux.Jeu;
-import com.insa.VGDream.jeux.JeuDTO;
-import org.hibernate.Hibernate;
-import org.modelmapper.ModelMapper;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -16,14 +13,16 @@ public class Joueur implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String username;
     @NotEmpty
     private String prenom, nom, password;
 
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "joueurs")
     private Collection<Jeu> jeux;
 
-    public Joueur(Long id, String prenom, String nom, String password, Collection<Jeu> jeux) {
+    public Joueur(Long id, String pseudo, String prenom, String nom, String password, Collection<Jeu> jeux) {
         this.id = id;
+        this.username = pseudo;
         this.prenom = prenom;
         this.nom = nom;
         this.password = password;
@@ -40,6 +39,14 @@ public class Joueur implements Serializable {
 
     public void setPrenom(String prenom) {
         this.prenom = prenom;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public Long getId() {
