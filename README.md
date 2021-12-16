@@ -27,3 +27,5 @@ Puis, dans un second terminal :
 - Dans la fenêtre graphique, remplacer le champ URL par : `jdbc:hsqldb:hsql://localhost/VGDreamDB`
 
 ### Lancer l'application
+Après avoir lancé l'application via l'IDE, l'application web sera disponible via le lien suivant :
+http://localhost:8090/home.html
