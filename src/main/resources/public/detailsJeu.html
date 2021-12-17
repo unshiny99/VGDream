@@ -28,27 +28,32 @@
 
             // get id passed as URL param
             $.urlParam = function(name){
-                var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+                let results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
                 return results[1] || 0;
             }
-            const id = $.urlParam('id');
-            //console.log(id);
+            let id = $.urlParam('id');
 
-            $.get("VGDream/jeux/"+id, function (data) {
-                var date = new Date(data.dateSortie);
+            $.get("VGDream/jeux/" + id, function (data) {
+                // prevent wrong id and null id
+                if (typeof data == 'undefined') {
+                    $(location).attr("href", "home.html")
+                } else {
+                    var date = new Date(data.dateSortie);
 
-                $("#content").append(
-                    '<div class="card">'
+                    $("#content").append(
+                        '<div class="card">'
                         + '<div class="card-body">'
                             + '<h1 class="card-title">' + data.nom + '</h1>'
                             + '<p>' + data.description + '</p>'
                             + '<p>Catégorie : ' + data.categorie + '</p>'
                             + '<p>Développé par <em>' + data.studioDev + '</em></p>'
                             + '<p>Date de sortie : ' + date.toLocaleDateString() + '</p>'
-                            + '<a href="modifJeu.html?id=' + id +'" class="btn btn-primary">Modifier</a>'
+                            + '<a href="modifJeu.html?id=' + id + '" class="card-link btn btn-primary">Modifier</a>'
+                            + '<a href="home.html" class="card-link btn btn-dark">Retour</a>'
                         + '</div>'
-                    + '</div>'
-                );
+                        + '</div>'
+                    );
+                }
             });
         });
     </script>

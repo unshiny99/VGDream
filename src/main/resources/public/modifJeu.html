@@ -42,7 +42,8 @@
                 <label for="categorie">Catégorie principale</label>
             </div>
             <button type="submit" class="btn btn-primary" id="save">Enregistrer</button>
-            <a id="callback-link" href="detailsJeu.html" class="btn btn-danger">Retour</a>
+            <input type="button" id="delete-link" class="btn btn-danger" value="Supprimer le jeu">
+            <a id="callback-link" href="detailsJeu.html" class="btn btn-dark">Annuler</a>
         </form>
     </div>
     <div id="footer" class="footer mt-auto py-3 bg-light text-center"></div>
@@ -96,6 +97,15 @@
                     }),
                     contentType: 'application/json; charset=utf-8',
                     success: $(location).attr("href",callback_link)
+                });
+            });
+
+            $('#delete-link').click(function () {
+                $.ajax({
+                    url:"VGDream/jeux/"+id,
+                    type: 'delete',
+                    contentType: 'application/json; charset=utf-8',
+                    success: $(location).attr("href","home.html")
                 });
             });
         });

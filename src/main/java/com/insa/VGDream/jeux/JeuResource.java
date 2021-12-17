@@ -67,12 +67,11 @@ public class JeuResource {
     }
 
     @DELETE
+    @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Iterable<Jeu> deleteJeu(Jeu jeu) {
-        //List<JeuDTO> jeux = getJeux();
-        //Jeu jeuEntity = jeuRepository.findById(jeu.getId());
-        jeuRepository.delete(jeu);
-        return jeuRepository.findAll();
+    public void deleteJeu(@PathParam("id") Long id) {
+        jeuRepository.deleteById(id);
+        //return jeuRepository.findAll();
     }
 
 }
