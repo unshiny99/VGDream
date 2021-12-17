@@ -56,6 +56,16 @@ public class JeuResource {
         }
     }
 
+    @PUT
+    @Path("{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public void putJeu(@PathParam("id") Long id, Jeu jeu) {
+        if (jeuRepository.findById(id).isPresent()) {
+            jeuRepository.putJeu(jeu.getNom(),jeu.getDateSortie(),jeu.getCategorie(),jeu.getDescription(),jeu.getStudioDev(),id);
+        }
+    }
+
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
     public Iterable<Jeu> deleteJeu(Jeu jeu) {

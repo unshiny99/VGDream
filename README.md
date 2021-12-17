@@ -7,8 +7,9 @@
 ## Préambule
 * Nous avons décidé de réaliser une application de gestion de collection de jeux vidéos.
 
-* Cette application permettra à un joueur **d'ajouter des jeux** à sa collection personnelle, ou bien **d'en enlever**.
-* Il pourra également **créer un jeu** si ce dernier n'existe pas encore dans le système, ou en **mettre un à jour** (si ses informations sont incorrectes).
+<!-- commented line -->
+<!-- * Cette application permettra à un joueur **d'ajouter des jeux** à sa collection personnelle, ou bien **d'en enlever**. -->
+* Le joueur pourra **créer un jeu** si ce dernier n'existe pas encore dans le système, ou en **mettre un à jour** (si ses informations sont incorrectes).
 
 * La **liste complète des jeux** sera affichée sur l'accueil de notre application.
 
@@ -27,5 +28,7 @@ Puis, dans un second terminal :
 - Dans la fenêtre graphique, remplacer le champ URL par : `jdbc:hsqldb:hsql://localhost/VGDreamDB`
 
 ### Lancer l'application
+Pour des soucis de compatibilité, nous avons changé le port par défaut.
+
 Après avoir lancé l'application via l'IDE, l'application web sera disponible via le lien suivant :
-http://localhost:8090/home.html
+http://localhost:8090
