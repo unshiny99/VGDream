@@ -28,7 +28,7 @@ SET FILES NIO TRUE
 SET FILES NIO SIZE 256
 SET FILES LOG TRUE
 SET FILES LOG SIZE 50
-SET FILES CHECK 4983
+SET FILES CHECK 5477
 SET DATABASE COLLATION "SQL_TEXT" PAD SPACE
 CREATE USER SA PASSWORD DIGEST 'd41d8cd98f00b204e9800998ecf8427e'
 ALTER USER SA SET LOCAL TRUE
@@ -39,7 +39,7 @@ CREATE MEMORY TABLE PUBLIC.JEU_JOUEURS(JEUX_ID BIGINT NOT NULL,JOUEURS_ID BIGINT
 CREATE MEMORY TABLE PUBLIC.JOUEUR(ID BIGINT NOT NULL PRIMARY KEY,NOM VARCHAR(255),PASSWORD VARCHAR(255),PRENOM VARCHAR(255),USERNAME VARCHAR(255),PSEUDO VARCHAR(255))
 ALTER TABLE PUBLIC.JEU_JOUEURS ADD CONSTRAINT FKADRQPICXGQBRPC01ARFRXTGPX FOREIGN KEY(JOUEURS_ID) REFERENCES PUBLIC.JOUEUR(ID)
 ALTER SEQUENCE SYSTEM_LOBS.LOB_ID RESTART WITH 1
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 23
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 25
 SET DATABASE DEFAULT INITIAL SCHEMA PUBLIC
 GRANT USAGE ON DOMAIN INFORMATION_SCHEMA.CARDINAL_NUMBER TO PUBLIC
 GRANT USAGE ON DOMAIN INFORMATION_SCHEMA.YES_OR_NO TO PUBLIC
@@ -50,7 +50,7 @@ GRANT DBA TO SA
 SET SCHEMA SYSTEM_LOBS
 INSERT INTO BLOCKS VALUES(0,2147483647,0)
 SET SCHEMA PUBLIC
-INSERT INTO JEU VALUES(5,'2013-08-15 02:00:00.000000','Payday 2 reprend cinq personnages du premier opus : Dallas, Chains, Wolf et Hoxton . Ces personnalit\u00e9s sont incarn\u00e9es par les joueurs lors des parties, mais ne d\u00e9finissent pas la (ou les) sp\u00e9cialisation(s) de chaque joueur.','Payday 2','Randomware','Jeu coop\u00e9ratif')
+INSERT INTO JEU VALUES(5,'2013-08-15 02:00:00.000000','Payday 2 reprend cinq personnages du premier opus : Dallas, Chains, Wolf et Hoxton . Ces personnalit\u00e9s sont incarn\u00e9es par les joueurs lors des parties, mais ne d\u00e9finissent pas la (ou les) sp\u00e9cialisation(s) de chaque joueur.','Payday 2','Overkill Software','Action')
 INSERT INTO JEU VALUES(6,'2019-02-04 01:00:00.000000','Apex Legends est un jeu vid\u00e9o de type battle royale de tir \u00e0 la premi\u00e8re personne. Le jeu invite le joueur \u00e0 survivre non pas tout seul, mais dans une escouade de trois ou deux personnes elle-m\u00eame oppos\u00e9e \u00e0 dix-neuf autres ou deux fois plus en duo.','Apex Legends','Respawn Entertainment','Battle Royale')
 INSERT INTO JEU VALUES(7,'2014-03-11 01:00:00.000000','Hearthstone (anciennement Hearthstone: Heroes of Warcraft) est un jeu de cartes \u00e0 collectionner en ligne. C''est un jeu gratuit (free to play) s''inspirant de l''univers de fiction m\u00e9di\u00e9val-fantastique du jeu vid\u00e9o Warcraft d\u00e9velopp\u00e9 par Blizzard.','Hearthstone','Blizzard Entertainment','Jeu de cartes \u00e0 collectionner')
 INSERT INTO JEU VALUES(9,'2021-12-08 01:00:00.000000','sfuh iezhf iozjf ','cyberpunk 2077','jh','Aventure')

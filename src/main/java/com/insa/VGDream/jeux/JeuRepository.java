@@ -14,4 +14,6 @@ public interface JeuRepository extends CrudRepository<Jeu, Long> {
     @Modifying
     @Transactional
     void putJeu(@Param("nom") String nom, @Param("dateSortie") Date date, @Param("categorie") String categorie, @Param("description") String description, @Param("studioDev") String studioDev, @Param("id") Long id);
+
+    int countJeuByJoueurs(Long id);
 }
