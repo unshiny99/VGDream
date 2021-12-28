@@ -23,4 +23,6 @@ public interface JoueurRepository extends CrudRepository<Joueur, Long> {
     @Transactional
     void addGame(@Param("jeu") Long jeu, @Param("id") Long id);
 
+    @Query(value = "select count(jo.jeux) from Joueur jo where jo.id= :id")
+    int countJeuByJoueurs(@Param("id") Long id);
 }
