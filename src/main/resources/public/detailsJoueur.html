@@ -38,6 +38,10 @@
             if (typeof data == 'undefined') {
                 $(location).attr("href", "players.html")
             } else {
+                var jeux = "";
+                $.each(data.jeux, function (){
+                    jeux += '<li>'+ this.nom +'</li>';
+                });
 
                 $("#content").append(
                     '<div class="card">'
@@ -45,9 +49,7 @@
                     + '<h1 class="card-title">' + data.pseudo + '</h1>'
                     + '<p>Prénom : ' + data.prenom + '</p>'
                     + '<p>Nom : ' + data.nom + '</p>'
-                    + '<p>Ses jeux : ' + $.each(data.jeux, function (){
-                        '<em>'+this.nom.toString() +'</em>'
-                    })+ '</p>'
+                    + '<p>Ses jeux :</p><ul>' + jeux + '</ul>'
                     + '<a href="home.html" class="card-link btn btn-dark">Retour</a>'
                     + '</div>'
                     + '</div>'

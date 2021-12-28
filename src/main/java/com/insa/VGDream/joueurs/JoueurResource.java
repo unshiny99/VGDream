@@ -47,16 +47,9 @@ public class JoueurResource {
     }
 
     @GET
-    @Path("{id}/nbjeux")
-    @Produces(MediaType.APPLICATION_JSON)
-    public int getNBJeux(@PathParam("id") Long id) {
-        return joueurRepository.countJeuByJoueurs(id);
-    }
-
-    @GET
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public JoueurDTO getJeu(@PathParam("id") Long id) {
+    public JoueurDTO getJoueur(@PathParam("id") Long id) {
         ModelMapper modelMapper = new ModelMapper();
         if (joueurRepository.findById(id).isPresent()) {
             Joueur joueur = joueurRepository.findById(id).get();
@@ -65,6 +58,13 @@ public class JoueurResource {
         else {
             return null;
         }
+    }
+
+    @GET
+    @Path("{id}/nbjeux")
+    @Produces(MediaType.APPLICATION_JSON)
+    public int getNBJeux(@PathParam("id") Long id) {
+        return joueurRepository.countJeuByJoueurs(id);
     }
 
     /**
