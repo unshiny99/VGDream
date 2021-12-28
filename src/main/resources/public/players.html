@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="h-100" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" class="h-100">
 <head>
     <meta charset="UTF-8">
     <title>Liste des joueurs</title>
@@ -14,7 +13,7 @@
 <div class="container text-center my-3">
     <h1>Les joueurs inscrits</h1>
     <div id="liste" class="row"></div>
-    <p><a href="signup.html">Inscrivez-vous !</a></p>
+    <p>Vous n'apparaissez pas dans la liste ? <a href="signup.html">Inscrivez-vous !</a></p>
 </div>
 <div id="footer" class="footer mt-auto py-3 bg-light text-center"></div>
 
@@ -37,7 +36,7 @@
                     '<div class="card my-2">'
                     + '<div class="card-body">'
                     + '<h3 class="card-title">' + this.pseudo + '</h3>'
-                    + '<p class="card-text">Jeux possédés : <em>' + this.jeux.size + '</em></p>'
+                    + '<p class="card-text">Jeu(x) possédé(s) : <b>' + this.jeux.length + '</b></p>'
                     + '<a href="detailsJoueur.html?id=' + this.id + '" class="btn btn-primary">Voir plus</a>'
                     + '</div>'
                     + '</div>'
