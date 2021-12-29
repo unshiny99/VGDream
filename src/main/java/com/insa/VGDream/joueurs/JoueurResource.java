@@ -2,6 +2,7 @@ package com.insa.VGDream.joueurs;
 
 import com.insa.VGDream.jeux.Jeu;
 import com.insa.VGDream.jeux.JeuDTO;
+import com.insa.VGDream.jeux.JeuResource;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -60,23 +61,16 @@ public class JoueurResource {
         }
     }
 
-    @GET
-    @Path("{id}/nbjeux")
-    @Produces(MediaType.APPLICATION_JSON)
-    public int getNBJeux(@PathParam("id") Long id) {
-        return joueurRepository.countJeuByJoueurs(id);
-    }
-
     /**
      * ajout d'un jeu à un joueur
      */
     @PUT
-    @Path("{id}")
+    @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public void addGame(@PathParam("id") Long id, Long jeu){
+    public void addGame(@PathParam("id") Long id, Jeu jeu){
         if(joueurRepository.existsById(id)){
-            joueurRepository.addGame(jeu,id);
+            joueurRepository.addGame(id, jeu);
         }
     }
 }

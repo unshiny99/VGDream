@@ -11,18 +11,13 @@ import java.util.Collection;
 import java.util.Optional;
 
 public interface JoueurRepository extends CrudRepository<Joueur, Long> {
-    String QUERY_ADD_JEU="update Joueur j " +
-            "set j.jeux = (select Jeu where Jeu.id = :jeu)" +
-            "where j.id = :id";
+    String QUERY_ADD_JEU="(select Jeu where Jeu.id = :jeu)";
 
     Joueur findByPseudo(String pseudo);
     long countByPseudo(String pseudo);
 
-    @Query(value = QUERY_ADD_JEU, nativeQuery = true)
+    @Query("update Joueur j set j.jeux=:jeu where j.id in :id")
     @Modifying
     @Transactional
-    void addGame(@Param("jeu") Long jeu, @Param("id") Long id);
-
-    @Query(value = "select count(jo.jeux) from Joueur jo where jo.id= :id")
-    int countJeuByJoueurs(@Param("id") Long id);
+    void addGame(@Param("id") Long id, @Param("jeu") Jeu jeu);
 }
