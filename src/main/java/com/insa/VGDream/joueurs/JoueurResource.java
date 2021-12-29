@@ -70,7 +70,9 @@ public class JoueurResource {
     @Produces(MediaType.APPLICATION_JSON)
     public void addGame(@PathParam("id") Long id, Jeu jeu){
         if(joueurRepository.existsById(id)){
-            joueurRepository.addGame(id, jeu);
+            Joueur j = joueurRepository.findById(id).orElseThrow();
+            j.addGame(jeu);
+            joueurRepository.save(j);
         }
     }
 }

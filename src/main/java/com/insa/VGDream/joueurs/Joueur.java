@@ -1,6 +1,7 @@
 package com.insa.VGDream.joueurs;
 
 import com.insa.VGDream.jeux.Jeu;
+import com.insa.VGDream.jeux.JeuDTO;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -30,6 +31,10 @@ public class Joueur implements Serializable {
 
     public Joueur() {
         super();
+    }
+
+    public void addGame(Jeu jeu){
+        this.jeux.add(jeu);
     }
 
     public String getPrenom() {
