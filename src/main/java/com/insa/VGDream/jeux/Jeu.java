@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
 
 @Entity
 public class Jeu implements Serializable {
@@ -20,7 +21,7 @@ public class Jeu implements Serializable {
     private String nom, studioDev, description, categorie;
     private Date dateSortie;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER)
     private Collection<Joueur> joueurs;
 
     public Jeu() {
@@ -35,6 +36,12 @@ public class Jeu implements Serializable {
         this.categorie=categorie;
         this.dateSortie = dateSortie;
         this.joueurs = joueurs;
+    }
+
+    public void addJoueur(Joueur joueur){
+        if (this.joueurs == null)
+            this.joueurs = new HashSet<>();
+        this.joueurs.add(joueur);
     }
 
     public Long getId() {

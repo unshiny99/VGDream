@@ -56,23 +56,20 @@ public class JoueurResource {
     /**
      * ajout d'un jeu à un joueur
      * @param id identifiant du joueur
-     * @param jeuDTO le jeu à ajouter
+     * @param jeu le jeu à ajouter
      */
     @PUT
     @Path("{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public void addJeuToJoueur(@PathParam("id") Long id, JeuDTO jeuDTO){
-        ModelMapper modelMapper = new ModelMapper();
+    public void addJeuToJoueur(@PathParam("id") Long id, Jeu jeu){
+        //ModelMapper modelMapper = new ModelMapper();
         if(joueurRepository.findById(id).isPresent()) {
             Joueur joueur = joueurRepository.findById(id).get();
 
-            Jeu jeu = modelMapper.map(jeuDTO,Jeu.class);
+            //Jeu jeu = modelMapper.map(jeuDTO,Jeu.class);
+            jeu.addJoueur(joueur);
             joueur.addGame(jeu);
-            if (jeu.getJoueurs() == null) {
-                jeu.setJoueurs(new HashSet<Joueur>());
-            }
-            jeu.getJoueurs().add(joueur);
 
             jeuRepository.save(jeu);
             joueurRepository.save(joueur);

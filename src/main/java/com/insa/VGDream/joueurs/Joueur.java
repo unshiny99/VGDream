@@ -18,7 +18,7 @@ public class Joueur implements Serializable {
     @NotEmpty
     private String prenom, nom, pseudo, password;
 
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "joueurs", cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "joueurs")
     private Collection<Jeu> jeux;
 
     public Joueur(Long id, String prenom, String nom, String pseudo, String password, Collection<Jeu> jeux) {
@@ -35,12 +35,6 @@ public class Joueur implements Serializable {
     }
 
     public void addGame(Jeu jeu){
-        this.jeux.add(jeu);
-    }
-
-    public void addGame(JeuDTO jeuDTO){
-        ModelMapper modelMapper = new ModelMapper();
-        Jeu jeu = modelMapper.map(jeuDTO,Jeu.class);
         this.jeux.add(jeu);
     }
 

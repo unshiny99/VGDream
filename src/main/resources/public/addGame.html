@@ -71,32 +71,29 @@
                );
            });
         });
-        var jeu="";
 
         $('#form-add-game-to-player').submit(function (e) {
             e.preventDefault();
+            var idJoueur = $('#select-profile option:selected').val();
+            var idJeu = $('#select-game option:selected').val();
 
-            /*
-            $.ajax({
-                url: "VGDream/joueurs/"+$('#select-profile option:selected').val(),
-                type: 'put',
-                data: JSON.stringify({
-                    "jeu": $.get("VGDream/jeux/"+$('#select-game option:selected').val(), function (data){
-                        console.log("ok")
-                        JSON.stringify({
-                            "nom": data.nom,
-                            "studioDev": data.studioDev,
-                            "description": data.description,
-                            "categorie": data.categorie,
-                            "dateSortie": data.dateSortie
-                        });
-                    })
-                }),
-                contentType: 'application/json; charset=utf-8',
-                success:
-                    $(location).attr("href", "players.html")
+            $.get("VGDream/jeux/"+idJeu, function (jeuData) {
+                $.ajax({
+                    url:"VGDream/joueurs/"+idJoueur,
+                    type: 'put',
+                    data: JSON.stringify({
+                        "id" : jeuData.id,
+                        "nom": jeuData.nom,
+                        "studioDev": jeuData.studioDev,
+                        "description": jeuData.description,
+                        "categorie": jeuData.categorie,
+                        "dateSortie": jeuData.dateSortie
+                    }),
+                    contentType: 'application/json; charset=utf-8',
+                    success: $(location).attr("href","players.html")
+                });
             });
-             */
+
         });
     });
 </script>
