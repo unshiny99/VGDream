@@ -76,4 +76,8 @@ public class JoueurDTO {
     public void setPseudo(String pseudo) {
         this.pseudo = pseudo;
     }
+
+    public void addGame(JeuDTO jeu){
+        this.jeux.add(jeu);
+    }
 }

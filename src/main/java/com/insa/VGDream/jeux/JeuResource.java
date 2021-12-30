@@ -42,6 +42,11 @@ public class JeuResource {
         return jeux;
     }
 
+    /**
+     * obtenir un jeu spécifique
+     * @param id identifiant du jeu
+     * @return le jeu concerné
+     */
     @GET
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -56,6 +61,11 @@ public class JeuResource {
         }
     }
 
+    /**
+     * mettre à jour un jeu
+     * @param id identifiant du jeu
+     * @param jeu le jeu concerné
+     */
     @PUT
     @Path("{id}")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -66,12 +76,14 @@ public class JeuResource {
         }
     }
 
+    /**
+     * supprimer un jeu
+     * @param id identifiant du jeu
+     */
     @DELETE
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public void deleteJeu(@PathParam("id") Long id) {
         jeuRepository.deleteById(id);
-        //return jeuRepository.findAll();
     }
-
 }

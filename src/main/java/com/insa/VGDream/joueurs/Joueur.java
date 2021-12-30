@@ -2,6 +2,7 @@ package com.insa.VGDream.joueurs;
 
 import com.insa.VGDream.jeux.Jeu;
 import com.insa.VGDream.jeux.JeuDTO;
+import org.modelmapper.ModelMapper;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -17,7 +18,7 @@ public class Joueur implements Serializable {
     @NotEmpty
     private String prenom, nom, pseudo, password;
 
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "joueurs")
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "joueurs", cascade = CascadeType.ALL)
     private Collection<Jeu> jeux;
 
     public Joueur(Long id, String prenom, String nom, String pseudo, String password, Collection<Jeu> jeux) {
@@ -34,6 +35,12 @@ public class Joueur implements Serializable {
     }
 
     public void addGame(Jeu jeu){
+        this.jeux.add(jeu);
+    }
+
+    public void addGame(JeuDTO jeuDTO){
+        ModelMapper modelMapper = new ModelMapper();
+        Jeu jeu = modelMapper.map(jeuDTO,Jeu.class);
         this.jeux.add(jeu);
     }
 
@@ -83,5 +90,17 @@ public class Joueur implements Serializable {
 
     public void setJeux(Collection<Jeu> jeux) {
         this.jeux = jeux;
+    }
+
+    @Override
+    public String toString() {
+        return "Joueur{" +
+                "id=" + id +
+                ", prenom='" + prenom + '\'' +
+                ", nom='" + nom + '\'' +
+                ", pseudo='" + pseudo + '\'' +
+                ", password='" + password + '\'' +
+                ", jeux=" + jeux +
+                '}';
     }
 }
