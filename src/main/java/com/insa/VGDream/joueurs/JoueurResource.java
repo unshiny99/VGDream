@@ -6,6 +6,7 @@ import com.insa.VGDream.jeux.JeuRepository;
 import com.insa.VGDream.jeux.JeuResource;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
@@ -56,23 +57,23 @@ public class JoueurResource {
     /**
      * ajout d'un jeu à un joueur
      * @param id identifiant du joueur
-     * @param jeu le jeu à ajouter
+     * @param jeu le jeu à ajouter (sans les joueurs associés)
      */
     @PUT
     @Path("{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public void addJeuToJoueur(@PathParam("id") Long id, Jeu jeu){
-        //ModelMapper modelMapper = new ModelMapper();
+        // NOTE : a priori la liste des joueurs est réinitialisée (voir pourquoi) => essayer d'appeler le jeuRepo ?
         if(joueurRepository.findById(id).isPresent()) {
             Joueur joueur = joueurRepository.findById(id).get();
 
-            //Jeu jeu = modelMapper.map(jeuDTO,Jeu.class);
             jeu.addJoueur(joueur);
-            joueur.addGame(jeu);
-
             jeuRepository.save(jeu);
+
+            joueur.addGame(jeu);
             joueurRepository.save(joueur);
+        
         }
     }
 

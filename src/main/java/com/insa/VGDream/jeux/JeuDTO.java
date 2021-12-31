@@ -6,7 +6,7 @@ import java.util.Date;
 public class JeuDTO implements Serializable {
     private static final long serialVersionUID = 87638236982367L;
 
-    private int id;
+    private Long id;
     private String nom, studioDev, description, categorie;
     private Date dateSortie;
 
@@ -14,7 +14,7 @@ public class JeuDTO implements Serializable {
         super();
     }
 
-    public JeuDTO(int id, String nom, String studioDev, String description, String categorie, Date dateSortie) {
+    public JeuDTO(Long id, String nom, String studioDev, String description, String categorie, Date dateSortie) {
         this.id = id;
         this.nom = nom;
         this.studioDev = studioDev;
@@ -23,11 +23,11 @@ public class JeuDTO implements Serializable {
         this.dateSortie = dateSortie;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

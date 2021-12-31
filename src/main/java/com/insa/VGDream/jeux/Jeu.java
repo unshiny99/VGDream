@@ -99,4 +99,17 @@ public class Jeu implements Serializable {
     public void setJoueurs(Collection<Joueur> joueurs) {
         this.joueurs = joueurs;
     }
+
+    @Override
+    public String toString() {
+        return "Jeu{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", studioDev='" + studioDev + '\'' +
+                ", description='" + description + '\'' +
+                ", categorie='" + categorie + '\'' +
+                ", dateSortie=" + dateSortie +
+                ", joueurs=" + joueurs +
+                '}';
+    }
 }
