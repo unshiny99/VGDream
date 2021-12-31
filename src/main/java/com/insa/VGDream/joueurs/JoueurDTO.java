@@ -1,11 +1,7 @@
 package com.insa.VGDream.joueurs;
 
-import com.insa.VGDream.jeux.Jeu;
 import com.insa.VGDream.jeux.JeuDTO;
 
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import java.util.Collection;
 
 public class JoueurDTO {

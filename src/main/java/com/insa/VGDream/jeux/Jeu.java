@@ -4,7 +4,6 @@ import com.insa.VGDream.joueurs.Joueur;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -26,16 +25,17 @@ public class Jeu implements Serializable {
 
     public Jeu() {
         super();
+        this.joueurs = new HashSet<>();
     }
 
-    public Jeu(Long id, String nom, String studioDev, String description, String categorie, Date dateSortie, Collection<Joueur> joueurs) {
+    public Jeu(Long id, String nom, String studioDev, String description, String categorie, Date dateSortie) {
+        this();
         this.id = id;
         this.nom = nom;
         this.studioDev = studioDev;
         this.description = description;
-        this.categorie=categorie;
+        this.categorie = categorie;
         this.dateSortie = dateSortie;
-        this.joueurs = joueurs;
     }
 
     public void addJoueur(Joueur joueur){

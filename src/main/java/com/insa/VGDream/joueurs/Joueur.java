@@ -1,8 +1,6 @@
 package com.insa.VGDream.joueurs;
 
 import com.insa.VGDream.jeux.Jeu;
-import com.insa.VGDream.jeux.JeuDTO;
-import org.modelmapper.ModelMapper;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;

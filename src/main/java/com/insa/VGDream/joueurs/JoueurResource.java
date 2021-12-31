@@ -3,19 +3,12 @@ package com.insa.VGDream.joueurs;
 import com.insa.VGDream.jeux.Jeu;
 import com.insa.VGDream.jeux.JeuDTO;
 import com.insa.VGDream.jeux.JeuRepository;
-import com.insa.VGDream.jeux.JeuResource;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 
-import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.StreamingOutput;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 @Path("joueurs")
 public class JoueurResource {
@@ -57,23 +50,36 @@ public class JoueurResource {
     /**
      * ajout d'un jeu à un joueur
      * @param id identifiant du joueur
-     * @param jeu le jeu à ajouter (sans les joueurs associés)
+     * @param jeuDTO le jeu à ajouter (sans les joueurs associés)
      */
     @PUT
     @Path("{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public void addJeuToJoueur(@PathParam("id") Long id, Jeu jeu){
+    public void addJeuToJoueur(@PathParam("id") Long id, JeuDTO jeuDTO){
         // NOTE : a priori la liste des joueurs est réinitialisée (voir pourquoi) => essayer d'appeler le jeuRepo ?
+        boolean flag = false;
         if(joueurRepository.findById(id).isPresent()) {
             Joueur joueur = joueurRepository.findById(id).get();
 
-            jeu.addJoueur(joueur);
-            jeuRepository.save(jeu);
+            if (jeuRepository.findById(jeuDTO.getId()).isPresent()) {
+                Jeu jeu = jeuRepository.findById(jeuDTO.getId()).get();
 
-            joueur.addGame(jeu);
-            joueurRepository.save(joueur);
-        
+                for (Jeu jeuData : joueur.getJeux()) {
+                    if (Objects.equals(jeuData.getId(), jeu.getId())) {
+                        System.out.println("Jeu déjà enregistré");
+                        flag = true;
+                    }
+                }
+
+                if (!flag) {
+                    jeu.addJoueur(joueur);
+                    jeuRepository.save(jeu);
+
+                    joueur.addGame(jeu);
+                    joueurRepository.save(joueur);
+                }
+            }
         }
     }
 
