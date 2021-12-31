@@ -53,7 +53,10 @@
 
 <script>
     $(function () {
-        $("#header").load("header.html");
+        $("#header").load("header.html", function () {
+            $("#navbarSupportedContent .navbar-nav .nav-item .active").removeClass("active");
+            $("#add-game").addClass("active");
+        });
         $("#footer").load("footer.html");
 
         $.get("VGDream/joueurs", function (data) {

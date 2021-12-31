@@ -23,8 +23,13 @@
     </script>
     <script>
         $(function () {
-            $("#header").load("header.html");
+            $("#header").load("header.html",function () {
+               $("#navbarSupportedContent .navbar-nav .nav-item .active").removeClass("active");
+            });
             $("#footer").load("footer.html");
+
+            //$("#navbarSupportedContent a").removeClass("active");
+            //console.log($("#navbarSupportedContent a").attr("class"));
 
             // get id passed as URL param
             $.urlParam = function(name){

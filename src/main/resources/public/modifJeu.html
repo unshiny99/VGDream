@@ -58,7 +58,9 @@
     </script>
     <script>
         $(function () {
-            $("#header").load("header.html");
+            $("#header").load("header.html",function () {
+                $("#navbarSupportedContent .navbar-nav .nav-item .active").removeClass("active");
+            });
             $("#footer").load("footer.html");
 
             // get id passed as URL param
