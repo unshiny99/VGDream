@@ -20,18 +20,20 @@ public class JoueurResource {
 
     /**
      * inscription d'un joueur
+     *
      * @param joueur le joueur à créer
      * @return la nouvelle liste de joueurs
      */
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Joueur createJoueur(Joueur joueur){
+    public Joueur createJoueur(Joueur joueur) {
         return joueurRepository.save(joueur);
     }
 
     /**
      * obtention de la liste de tous les joueurs
+     *
      * @return la liste concernée
      */
     @GET
@@ -40,8 +42,8 @@ public class JoueurResource {
         ModelMapper modelMapper = new ModelMapper();
         List<JoueurDTO> joueurs = new ArrayList<>();
 
-        for(Joueur joueur : joueurRepository.findAll()){
-            JoueurDTO joueurDTO = modelMapper.map(joueur,JoueurDTO.class);
+        for (Joueur joueur : joueurRepository.findAll()) {
+            JoueurDTO joueurDTO = modelMapper.map(joueur, JoueurDTO.class);
             joueurs.add(joueurDTO);
         }
         return joueurs;
@@ -49,17 +51,18 @@ public class JoueurResource {
 
     /**
      * ajout d'un jeu à un joueur
-     * @param id identifiant du joueur
+     *
+     * @param id     identifiant du joueur
      * @param jeuDTO le jeu à ajouter (sans les joueurs associés)
      */
     @PUT
     @Path("{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public void addJeuToJoueur(@PathParam("id") Long id, JeuDTO jeuDTO){
+    public void addJeuToJoueur(@PathParam("id") Long id, JeuDTO jeuDTO) {
         // NOTE : a priori la liste des joueurs est réinitialisée (voir pourquoi) => essayer d'appeler le jeuRepo ?
         boolean flag = false;
-        if(joueurRepository.findById(id).isPresent()) {
+        if (joueurRepository.findById(id).isPresent()) {
             Joueur joueur = joueurRepository.findById(id).get();
 
             if (jeuRepository.findById(jeuDTO.getId()).isPresent()) {
@@ -84,7 +87,34 @@ public class JoueurResource {
     }
 
     /**
+     * enlever d'un jeu à un joueur
+     *
+     * @param id     identifiant du joueur
+     * @param jeuDTO le jeu à retirer (sans les joueurs associés)
+     */
+    @PUT
+    @Path("{id}/removeGame")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public void removeJeuToJoueur(@PathParam("id") Long id, JeuDTO jeuDTO) {
+        if (joueurRepository.findById(id).isPresent()) {
+            Joueur joueur = joueurRepository.findById(id).get();
+
+            if (jeuRepository.findById(jeuDTO.getId()).isPresent()) {
+                Jeu jeu = jeuRepository.findById(jeuDTO.getId()).get();
+
+                jeu.getJoueurs().removeIf(joueur1 -> joueur.getId().equals(joueur1.getId()));
+                jeuRepository.save(jeu);
+
+                joueur.getJeux().removeIf(jeu1 -> jeu.getId().equals(jeu1.getId()));
+                joueurRepository.save(joueur);
+            }
+        }
+    }
+
+    /**
      * obtention d'un joueur spécifique
+     *
      * @param id identifiant du joueur
      * @return le joueur concerné
      */
@@ -95,10 +125,26 @@ public class JoueurResource {
         ModelMapper modelMapper = new ModelMapper();
         if (joueurRepository.findById(id).isPresent()) {
             Joueur joueur = joueurRepository.findById(id).get();
-            return modelMapper.map(joueur,JoueurDTO.class);
-        }
-        else {
+            return modelMapper.map(joueur, JoueurDTO.class);
+        } else {
             return null;
         }
+    }
+
+    /**
+     * permet d'obtenir la liste des jeux d'un joueur
+     *
+     * @param id
+     * @return les jeux d'un joueur
+     */
+    @GET
+    @Path("{id}/jeux")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Collection<JeuDTO> getJeux(@PathParam("id") Long id) {
+        ModelMapper modelMapper = new ModelMapper();
+        Joueur joueur = joueurRepository.findById(id).get();
+        JoueurDTO joueurDTO = modelMapper.map(joueur, JoueurDTO.class);
+
+        return joueurDTO.getJeux();
     }
 }
