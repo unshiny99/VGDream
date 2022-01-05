@@ -11,7 +11,7 @@
 <body class="d-flex flex-column h-100">
 <div id="header"></div>
 <div class="container text-center my-3">
-    <h1>Ajout d'un jeu à votre bibliothèque</h1>
+    <h1>Suppression d'un jeu de votre bibliothèque</h1>
 
     <form id="form-add-game-to-player" class="col-lg-6 mx-auto needs-validation">
         <div class="form-floating mb-3">
@@ -43,7 +43,6 @@
     $(function () {
         $("#header").load("header.html", function () {
             $("#navbarSupportedContent .navbar-nav .nav-item .active").removeClass("active");
-            $("#add-game").addClass("active");
         });
         $("#footer").load("footer.html");
 
