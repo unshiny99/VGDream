@@ -134,7 +134,7 @@ public class JoueurResource {
     /**
      * permet d'obtenir la liste des jeux d'un joueur
      *
-     * @param id
+     * @param id l'identifiant du joueur concerné
      * @return les jeux d'un joueur
      */
     @GET
@@ -142,9 +142,51 @@ public class JoueurResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Collection<JeuDTO> getJeux(@PathParam("id") Long id) {
         ModelMapper modelMapper = new ModelMapper();
-        Joueur joueur = joueurRepository.findById(id).get();
-        JoueurDTO joueurDTO = modelMapper.map(joueur, JoueurDTO.class);
+        if (joueurRepository.findById(id).isPresent()) {
+            Joueur joueur = joueurRepository.findById(id).get();
+            JoueurDTO joueurDTO = modelMapper.map(joueur, JoueurDTO.class);
 
-        return joueurDTO.getJeux();
+            return joueurDTO.getJeux();
+        }
+        return null;
+    }
+
+    /**
+     * permet d'obtenir la liste des jeux que n'a pas un joueur
+     *
+     * @param id l'identifiant du joueur concerné
+     * @return les jeux que le joueur ne possède pas
+     */
+    @GET
+    @Path("{id}/non-jeux")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Collection<JeuDTO> getNonJeux(@PathParam("id") Long id) {
+        ModelMapper modelMapper = new ModelMapper();
+
+        if (joueurRepository.findById(id).isPresent()) {
+            Joueur joueur = joueurRepository.findById(id).get();
+            JoueurDTO joueurDTO = modelMapper.map(joueur, JoueurDTO.class);
+
+            Collection<Jeu> jeux = jeuRepository.findAll();
+            Collection<JeuDTO> jeuxPossedes = joueurDTO.getJeux();
+
+            Collection<JeuDTO> jeuxNonPossedes = new HashSet<>();
+            for (Jeu jeu : jeux) {
+                JeuDTO jeuDTO = modelMapper.map(jeu, JeuDTO.class);
+                boolean found = false;
+
+                for (JeuDTO jeuPossede : jeuxPossedes) {
+                    if (Objects.equals(jeuPossede.getId(), jeu.getId())) {
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) {
+                    jeuxNonPossedes.add(jeuDTO);
+                }
+            }
+            return jeuxNonPossedes;
+        }
+        return null;
     }
 }
