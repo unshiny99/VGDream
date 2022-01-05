@@ -27,22 +27,22 @@
 </script>
 <script>
     $(function () {
-        $("#header").load("header.html", function () {
+        $("#header").load("../layout/header.html", function () {
             $("#navbarSupportedContent .navbar-nav .nav-item .active").removeClass("active");
             $("#players").addClass("active");
         });
-        $("#footer").load("footer.html");
-        $.get("VGDream/joueurs", function (data) {
+        $("#footer").load("../layout/footer.html");
+        $.get("/VGDream/joueurs", function (data) {
             $.each(data, function () {
                 $("#liste").append(
                     '<div class="col-lg-6 col-xl-4">' +
-                    '<div class="card my-2">'
-                    + '<div class="card-body">'
-                    + '<h3 class="card-title">' + this.pseudo + '</h3>'
-                    + '<p class="card-text">Jeu(x) possédé(s) : <b>' + this.jeux.length + '</b></p>'
-                    + '<a href="detailsJoueur.html?id=' + this.id + '" class="btn btn-primary">Voir plus</a>'
-                    + '</div>'
-                    + '</div>'
+                        '<div class="card my-2">'
+                            + '<div class="card-body">'
+                                + '<h3 class="card-title">' + this.pseudo + '</h3>'
+                                + '<p class="card-text">Jeu(x) possédé(s) : <b>' + this.jeux.length + '</b></p>'
+                                + '<a href="detailsPlayer.html?id=' +  this.id + '" class="btn btn-primary">Voir plus</a>'
+                            + '</div>'
+                        + '</div>'
                     + '</div>'
                 );
             });

@@ -23,10 +23,10 @@
     </script>
     <script>
         $(function () {
-            $("#header").load("header.html",function () {
+            $("#header").load("../layout/header.html",function () {
                $("#navbarSupportedContent .navbar-nav .nav-item .active").removeClass("active");
             });
-            $("#footer").load("footer.html");
+            $("#footer").load("../layout/footer.html");
 
             //$("#navbarSupportedContent a").removeClass("active");
             //console.log($("#navbarSupportedContent a").attr("class"));
@@ -38,7 +38,7 @@
             }
             let id = $.urlParam('id');
 
-            $.get("VGDream/jeux/" + id, function (data) {
+            $.get("/VGDream/jeux/" + id, function (data) {
                 // prevent wrong id and null id
                 if (typeof data == 'undefined') {
                     $(location).attr("href", "home.html")
@@ -53,8 +53,8 @@
                             + '<p>Catégorie : ' + data.categorie + '</p>'
                             + '<p>Développé par <em>' + data.studioDev + '</em></p>'
                             + '<p>Date de sortie : ' + date.toLocaleDateString() + '</p>'
-                            + '<a href="modifJeu.html?id=' + id + '" class="card-link btn btn-primary">Modifier</a>'
-                            + '<a href="home.html" class="card-link btn btn-dark">Retour</a>'
+                            + '<a href="modifGame.html?id=' + id  + '" class="card-link btn btn-primary">Modifier</a>'
+                            + '<a href="../home.html" class="card-link btn btn-dark">Retour</a>'
                         + '</div>'
                         + '</div>'
                     );

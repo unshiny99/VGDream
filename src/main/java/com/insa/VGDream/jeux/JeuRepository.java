@@ -9,7 +9,7 @@ import javax.transaction.Transactional;
 import java.util.Date;
 
 public interface JeuRepository extends JpaRepository<Jeu, Long> {
-    // requêtes de manipulation des données
+    // mise à jour d'un jeu
     @Query("update Jeu j set j.nom = :nom, j.dateSortie = :dateSortie, j.categorie = :categorie, j.description = :description, j.studioDev = :studioDev where j.id = :id")
     @Modifying
     @Transactional

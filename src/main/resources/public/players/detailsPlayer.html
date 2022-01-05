@@ -23,10 +23,10 @@
 </script>
 <script>
     $(function () {
-        $("#header").load("header.html",function () {
+        $("#header").load("../layout/header.html",function () {
             $("#navbarSupportedContent .navbar-nav .nav-item .active").removeClass("active");
         });
-        $("#footer").load("footer.html");
+        $("#footer").load("../layout/footer.html");
 
         // get id passed as URL param
         $.urlParam = function(name){
@@ -35,7 +35,7 @@
         }
         let id = $.urlParam('id');
 
-        $.get("VGDream/joueurs/" + id, function (data) {
+        $.get("/VGDream/joueurs/" + id, function (data) {
             // prevent wrong id and null id
             if (typeof data == 'undefined') {
                 $(location).attr("href", "players.html")
@@ -52,8 +52,8 @@
                             + '<p>Prénom : ' + data.prenom + '</p>'
                             + '<p>Nom : ' + data.nom + '</p>'
                             + '<p>Ses jeux :</p><ul>' + jeux + '</ul>'
-                            + '<a href="addPlayerGame.html?id='+ id+'" class="card-link btn btn-primary">M\'ajouter un jeu</a>'
-                            + '<a href="removeGame.html?id='+ id+'" class="card-link btn btn-danger">Retirer un de mes jeux</a>'
+                            + '<a href="../addGameToPlayer.html?id=' + id + '" class="card-link btn btn-primary">M\'ajouter un jeu</a>'
+                            + '<a href="../removeGameToPlayer.html?id=' + id + '" class="card-link btn btn-danger">Retirer un de mes jeux</a>'
                             + '<a href="players.html" class="card-link btn btn-dark">Retour</a>'
                         + '</div>'
                     + '</div>'

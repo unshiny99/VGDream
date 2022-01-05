@@ -4,6 +4,7 @@ import com.insa.VGDream.joueurs.Joueur;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -11,6 +12,7 @@ import java.util.HashSet;
 
 @Entity
 public class Jeu implements Serializable {
+    @Serial
     private static final long serialVersionUID = 87638236982367L;
 
     @Id
@@ -44,6 +46,9 @@ public class Jeu implements Serializable {
         this.joueurs.add(joueur);
     }
 
+    /*
+        getters & setters
+     */
     public Long getId() {
         return id;
     }

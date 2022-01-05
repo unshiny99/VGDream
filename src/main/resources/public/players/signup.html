@@ -62,10 +62,10 @@
 
     <script>
         $(function () {
-            $("#header").load("header.html",function () {
+            $("#header").load("../layout/header.html",function () {
                 $("#navbarSupportedContent .navbar-nav .nav-item .active").removeClass("active");
             });
-            $("#footer").load("footer.html");
+            $("#footer").load("../layout/footer.html");
 
             $('#password, #password-confirmation').on('keyup', function () {
                 if ($('#password').val() === $('#password-confirmation').val()) {
@@ -81,7 +81,7 @@
                 e.preventDefault();
 
                 $.ajax({
-                    url: "VGDream/joueurs",
+                    url: "/VGDream/joueurs",
                     type: 'post',
                     data: JSON.stringify({
                         "nom": $('#nom').val(),

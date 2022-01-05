@@ -11,11 +11,22 @@
 <body class="d-flex flex-column h-100">
 <div id="header"></div>
 <div class="container text-center my-3">
-    <h1>Suppression d'un jeu de votre bibliothèque</h1>
+    <h1>Ajout d'un jeu à votre bibliothèque</h1>
 
     <form id="form-add-game-to-player" class="col-lg-6 mx-auto needs-validation">
         <div class="form-floating mb-3">
-            <p class="text-left">Quel est le jeu à supprimer ?</p>
+            <p class="text-left">Votre profil :</p>
+            <select class="form-select" aria-label="Default select example" id="select-profile">
+
+            </select>
+            <!--
+            <div class="invalid-feedback">
+                Merci d'entrer un nom.
+            </div>
+            -->
+        </div>
+        <div class="form-floating mb-3">
+            <p class="text-left">Le jeu à ajouter :</p>
             <select class="form-select" aria-label="Default select example" id="select-game">
             </select>
             <!--
@@ -24,8 +35,8 @@
             </div>
             -->
         </div>
-        <button id="save" type="submit" class="btn btn-danger">Supprimer</button>
-        <a href="players.html" class="btn btn-primary">Retour</a>
+        <button id="save" type="submit" class="btn btn-primary">Ajouter</button>
+        <a href="players/players.html" class="btn btn-danger">Retour</a>
     </form>
 </div>
 <div id="footer" class="footer mt-auto py-3 bg-light text-center"></div>
@@ -43,30 +54,34 @@
     $(function () {
         $("#header").load("header.html", function () {
             $("#navbarSupportedContent .navbar-nav .nav-item .active").removeClass("active");
+            $("#add-game").addClass("active");
         });
         $("#footer").load("footer.html");
 
-        $.urlParam = function(name){
-            let results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-            return results[1] || 0;
-        }
-        let id = $.urlParam('id');
-
-        $.get("VGDream/joueurs/"+id+"/jeux", function (data) {
+        $.get("VGDream/joueurs", function (data) {
             $.each(data, function (){
-                $("#select-game").append(
-                    '<option value="'+ this.id +'">'+ this.nom+'</option>'
+                $("#select-profile").append(
+                    '<option value="'+ this.id +'">'+ this.pseudo+'</option>'
                 );
             });
         });
 
+        $.get("VGDream/jeux", function jeu(data){
+           $.each(data, function (){
+               $("#select-game").append(
+                   '<option value="'+ this.id +'">'+ this.nom+'</option>'
+               );
+           });
+        });
+
         $('#form-add-game-to-player').submit(function (e) {
             e.preventDefault();
+            var idJoueur = $('#select-profile option:selected').val();
             var idJeu = $('#select-game option:selected').val();
 
             $.get("VGDream/jeux/"+idJeu, function (jeuData) {
                 $.ajax({
-                    url:"VGDream/joueurs/"+id+"/removeGame",
+                    url:"VGDream/joueurs/"+idJoueur,
                     type: 'put',
                     data: JSON.stringify({
                         "id" : jeuData.id,
@@ -77,7 +92,7 @@
                         "dateSortie": jeuData.dateSortie
                     }),
                     contentType: 'application/json; charset=utf-8',
-                    success: $(location).attr("href","players.html?id="+id)
+                    success: $(location).attr("href","players.html")
                 });
             });
 
