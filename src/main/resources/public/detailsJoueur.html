@@ -47,15 +47,15 @@
 
                 $("#content").append(
                     '<div class="card">'
-                    + '<div class="card-body">'
-                    + '<h1 class="card-title">' + data.pseudo + '</h1>'
-                    + '<p>Prénom : ' + data.prenom + '</p>'
-                    + '<p>Nom : ' + data.nom + '</p>'
-                    + '<p>Ses jeux :</p><ul>' + jeux + '</ul>'
-                    + '<a href="players.html" class="card-link btn btn-dark">Retour</a>'
-                    + '<a href="addPlayerGame.html?id='+ id+'" class="card-link btn btn-primary">Ajouter un jeu</a>'
-                    + '<a href="removeGame.html?id='+ id+'" class="card-link btn btn-danger">Supprimer un jeu de la bibliothèque</a>'
-                    + '</div>'
+                        + '<div class="card-body">'
+                            + '<h1 class="card-title">' + data.pseudo + '</h1>'
+                            + '<p>Prénom : ' + data.prenom + '</p>'
+                            + '<p>Nom : ' + data.nom + '</p>'
+                            + '<p>Ses jeux :</p><ul>' + jeux + '</ul>'
+                            + '<a href="addPlayerGame.html?id='+ id+'" class="card-link btn btn-primary">M\'ajouter un jeu</a>'
+                            + '<a href="removeGame.html?id='+ id+'" class="card-link btn btn-danger">Retirer un de mes jeux</a>'
+                            + '<a href="players.html" class="card-link btn btn-dark">Retour</a>'
+                        + '</div>'
                     + '</div>'
                 );
             }
