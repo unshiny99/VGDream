@@ -19,7 +19,10 @@ public class Jeu implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @NotEmpty
-    private String nom, studioDev, description, categorie;
+    private String nom, studioDev;
+    @Lob
+    private String description;
+    private String categorie;
     private Date dateSortie;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
