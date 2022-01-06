@@ -67,8 +67,12 @@
             });
             $("#footer").load("../layout/footer.html");
 
+            if($('#password').val() === '' || $('#password').val()=== undefined){
+                $('#save').prop('disabled', true)
+            }
+
             $('#password, #password-confirmation').on('keyup', function () {
-                if ($('#password').val() === $('#password-confirmation').val()) {
+                if ($('#password').val() === $('#password-confirmation').val() && $('#password').val()!='') {
                     $('#save').prop('disabled', false)
                     $('#message').html('').css('color', 'green')
                 } else {

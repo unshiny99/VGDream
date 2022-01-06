@@ -14,9 +14,10 @@
     <h1>Supprimer mon profil</h1>
 
     <div class="form-floating mb-3">
-        <input type="password" class="form-control" placeholder="Entrez votre nom" id="init-password"
-               name="init-password" required>
-        <label for="init-password">Mot de passe actuel</label>
+        <input type="password" class="form-control" placeholder="Entrez votre mot de passe" id="password"
+               name="password" required>
+        <span id='message1'></span>
+        <label for="password">Mot de passe actuel</label>
         <!--
         <div class="invalid-feedback">
             Merci d'entrer un mot de passe.
@@ -24,7 +25,7 @@
         -->
     </div>
     <div class="form-floating mb-3">
-        <input type="password" class="form-control" placeholder="Confirmez le nouveau mot de passe"
+        <input type="password" class="form-control" placeholder="Confirmez le mot de passe"
                id="password-confirmation" name="password-confirmation" required>
         <span id='message'></span>
         <label for="password-confirmation">Confirmez le mot de passe</label>
@@ -56,24 +57,26 @@
         }
         const id = $.urlParam('id');
 
-        $('#init-password, #password-confirmation').on('keyup', function () {
-            if ($('#init-password').val() === $('#password-confirmation').val()) {
-                $('#delete-link').prop('disabled', false)
-                $('#message').html('').css('color', 'green')
-            } else {
-                $('#message').html('Les mots de passe ne correspondent pas').css('color', 'red')
-                $('#delete-link').prop('disabled', true)
-            }
-        });
+        if($('#password').val() === '' || $('#password').val()=== undefined){
+            $('#delete-link').prop('disabled', true)
+        }
 
 
         $.get("/VGDream/joueurs/" + id, function (data) {
-            $('#init-password').on('keyup', function () {
-                if ($('#init-password').val() === data.password) {
-                    $('#message').html('')
+            $('#password').on('keyup', function () {
+                if ($('#password').val() === data.password) {
+                    $('#message1').html('')
+                    $('#password, #password-confirmation').on('keyup', function () {
+                        if ($('#password').val() === $('#password-confirmation').val() && $('#password').val()!='') {
+                            $('#delete-link').prop('disabled', false)
+                            $('#message').html('').css('color', 'green')
+                        } else {
+                            $('#message').html('Les mots de passe ne correspondent pas').css('color', 'red')
+                            $('#delete-link').prop('disabled', true)
+                        }
+                    });
                 } else {
-                    $('#message').html('Mot de passe incorrect').css('color', 'red')
-                    $('#delete-link').prop('disabled', true)
+                    $('#message1').html('Mot de passe incorrect').css('color', 'red')
                 }
             });
         });
