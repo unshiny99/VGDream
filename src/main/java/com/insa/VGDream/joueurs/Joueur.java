@@ -16,7 +16,7 @@ public class Joueur implements Serializable {
     @NotEmpty
     private String prenom, nom, pseudo, password;
 
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "joueurs")
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "joueurs", cascade = CascadeType.DETACH)
     private Collection<Jeu> jeux;
 
     public Joueur(Long id, String prenom, String nom, String pseudo, String password, Collection<Jeu> jeux) {
@@ -30,6 +30,13 @@ public class Joueur implements Serializable {
 
     public Joueur() {
         super();
+    }
+
+    @PreRemove
+    public void removeGamesFromPlayer() {
+        for (Jeu j : this.getJeux()) {
+            j.getJoueurs().remove(this);
+        }
     }
 
     public void addGame(Jeu jeu){

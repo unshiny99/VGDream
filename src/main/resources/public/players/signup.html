@@ -70,7 +70,7 @@
             $('#password, #password-confirmation').on('keyup', function () {
                 if ($('#password').val() === $('#password-confirmation').val()) {
                     $('#save').prop('disabled', false)
-                    $('#message').html('Les mots de passe correspondent').css('color', 'green')
+                    $('#message').html('').css('color', 'green')
                 } else {
                     $('#message').html('Les mots de passe ne correspondent pas').css('color', 'red')
                     $('#save').prop('disabled', true)

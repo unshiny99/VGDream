@@ -52,11 +52,11 @@
 
 <script>
     $(function () {
-        $("#header").load("header.html", function () {
+        $("#header").load("/layout/header.html", function () {
             $("#navbarSupportedContent .navbar-nav .nav-item .active").removeClass("active");
             $("#add-game").addClass("active");
         });
-        $("#footer").load("footer.html");
+        $("#footer").load("/layout/footer.html");
 
         $.get("VGDream/joueurs", function (data) {
             $.each(data, function (){

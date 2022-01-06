@@ -51,7 +51,7 @@
             return results[1] || 0;
         }
         let id = $.urlParam('id');
-        var link = "players/detailsPlayers.html?id="+id;
+        var link = "players/detailsPlayer.html?id="+id;
         $("#callback").attr("href",link);
 
         $.get("/VGDream/joueurs/"+id+"/jeux", function (data) {

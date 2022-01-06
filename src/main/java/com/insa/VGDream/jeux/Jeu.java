@@ -22,7 +22,7 @@ public class Jeu implements Serializable {
     private String nom, studioDev, description, categorie;
     private Date dateSortie;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
     private Collection<Joueur> joueurs;
 
     public Jeu() {
@@ -46,9 +46,7 @@ public class Jeu implements Serializable {
         this.joueurs.add(joueur);
     }
 
-    /*
-        getters & setters
-     */
+    //getters & setters
     public Long getId() {
         return id;
     }

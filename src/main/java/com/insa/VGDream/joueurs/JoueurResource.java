@@ -49,6 +49,26 @@ public class JoueurResource {
         return joueurs;
     }
 
+    @PUT
+    @Path("{id}/modifJoueur")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public void putJoueur(@PathParam("id") Long id, Joueur joueur) {
+        if (joueurRepository.findById(id).isPresent()) {
+            joueurRepository.putJoueur(joueur.getNom(), joueur.getPrenom(), joueur.getPseudo(),id);
+        }
+    }
+
+    @PUT
+    @Path("{id}/modifPwd")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public void putPassword(@PathParam("id") Long id, Joueur joueur) {
+        if (joueurRepository.findById(id).isPresent()) {
+            joueurRepository.putPassword(joueur.getPassword(),id);
+        }
+    }
+
     /**
      * ajout d'un jeu à un joueur
      *
@@ -188,5 +208,17 @@ public class JoueurResource {
             return jeuxNonPossedes;
         }
         return null;
+    }
+
+    /**
+     * supprimer un jeu
+     * @param id identifiant du jeu
+     */
+    @DELETE
+    @Path("{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public void deleteJoueur(@PathParam("id") Long id) {
+        
+        joueurRepository.deleteById(id);
     }
 }

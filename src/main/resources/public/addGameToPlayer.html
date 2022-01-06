@@ -25,7 +25,7 @@
       -->
     </div>
     <button id="save" type="submit" class="btn btn-primary">Ajouter</button>
-    <a href="players/players.html" class="btn btn-dark" id="callback">Retour</a>
+    <a href="/players/detailsPlayer.html" class="btn btn-dark" id="callback">Retour</a>
   </form>
 </div>
 <div id="footer" class="footer mt-auto py-3 bg-light text-center"></div>
@@ -51,7 +51,7 @@
       return results[1] || 0;
     }
     let id = $.urlParam('id');
-    var link = "players/detailsPlayers.html?id="+id;
+    var link = "players/detailsPlayer.html?id="+id;
     $("#callback").attr("href",link);
 
     $.get("/VGDream/joueurs/"+id+"/non-jeux", function (data) {
