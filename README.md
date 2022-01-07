@@ -19,26 +19,25 @@ Nous avons décidé de réaliser une application de gestion de collection de jeu
 * Enfin, on pourra **ajouter un jeu à la collection** d'un joueur, ou bien en **retirer de sa collection**.
 
 ## Utilisation de l'application
-### Ne pas oublier d'activer *hsqldb* sur la version locale !
+### Etape 1 : Ne pas oublier d'activer *hsqldb* sur la version locale !
 Pour cela, lancer les commandes suivantes :
 Dans un premier terminal, lancer le serveur :
 - ```cd hsqldb/lib```
 - ```java -cp hsqldb.jar org.hsqldb.server.Server --database.0 file:mydb --dbname.0 VGDreamDB```
 
-Puis, dans un second terminal, réaliser la connection :
+**Remarque :** Si vous souhaitez visualiser et/ou gérer les changements en base de données, dans un second terminal, lancer l'exécutable suivant :
 - ```cd hsqldb/lib```
 - ```java -cp hsqldb.jar org.hsqldb.util.DatabaseManagerSwing```
 - Dans la fenêtre graphique, remplacer le champ URL par : `jdbc:hsqldb:hsql://localhost/VGDreamDB`
 
-### Lancer l'exécution du programme
+### Etape 2 : Lancer l'exécution du programme
 Dans un troisième et dernier terminal, lancez les commandes suivantes :
 - ```mvn clean install```
 - ```mvn spring-boot:run```
 
 Pour des soucis de compatibilité, nous avons changé le port par défaut, qui est désormais le 8090.
 
-Après avoir lancé l'application via l'IDE, l'application web sera disponible via le lien suivant :
+Après avoir lancé l'application en ligne de commande ou via votre IDE, l'application web sera accessible à partir l'URL suivant :
 [localhost:8090](http://localhost:8090)
 
-### Remarque
-D'une manière générale, pensez à rafraîchir la page en cas de problème, afin de voir si votre changement a bien été effectué.
+**Remarque :** D'une manière générale, pensez à rafraîchir la page en cas de problème, afin de voir si votre changement a bien été effectué.
