@@ -4,6 +4,8 @@
 * La technologie utilisée pour la partie serveur est **Spring**
 * Les technologies pour l'interface cliente sont **JQuery**, ainsi que **Bootstrap 5**
 
+Pré-requis : `jdk-17`
+
 ## Préambule
 Nous avons décidé de réaliser une application de gestion de collection de jeux vidéos.
 
