@@ -14,6 +14,7 @@ Nous avons décidé de réaliser une application de gestion de collection de jeu
 * Un joueur pourra **s'inscrire** sur notre plateforme, **mettre à jour ses informations** personnelles, et même **supprimer son compte** s'il le souhaite.
 * Une **liste de tous les joueurs** sera affichée à titre indicatif.
 * On pourra alors retrouver les **détails d'un joueur** ainsi que sa **collection personnelle de jeux**.
+* Enfin, on pourra **ajouter un jeu à la collection** d'un joueur, ou bien en **retirer de sa collection**.
 
 ## Utilisation de l'application
 ### Ne pas oublier d'activer *hsqldb* sur la version locale !

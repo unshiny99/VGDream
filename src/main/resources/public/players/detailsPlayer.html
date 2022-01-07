@@ -45,8 +45,6 @@
                     jeux += '<li>'+ this.nom +'</li>';
                 });
 
-
-
                 $("#content").append(
                     '<div class="card">'
                         + '<div class="card-body">'
@@ -55,12 +53,15 @@
                             + '<p>Nom : ' + data.nom + '</p>'
                             + '<p>Ses jeux :</p><ul>' + jeux + '</ul>'
                             + '<a href="../addGameToPlayer.html?id=' + id + '" class="card-link btn btn-primary">M\'ajouter un jeu</a>'
-                            + '<a href="updatePlayer.html?id=' + id  + '" class="card-link btn btn-primary">Modifier mon profil</a>'
-                            + '<a href="../removeGameToPlayer.html?id=' + id + '" class="card-link btn btn-danger">Retirer un de mes jeux</a>'
+                            + '<a href="updatePlayer.html?id=' + id  + '" class="card-link btn btn-warning">Modifier mon profil</a>'
+                            + '<a href="../removeGameToPlayer.html?id=' + id + '" class="card-link btn btn-danger" id="remove-game">Retirer un de mes jeux</a>'
                             + '<a href="players.html" class="card-link btn btn-dark">Retour</a>'
                         + '</div>'
                     + '</div>'
                 );
+                if (data.jeux.length === 0) {
+                    $("#remove-game").addClass("disabled");
+                }
             }
         });
     });
