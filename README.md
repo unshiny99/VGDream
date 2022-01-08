@@ -31,7 +31,7 @@ Dans un premier terminal, lancer le serveur :
 - Dans la fenêtre graphique, remplacer le champ URL par : `jdbc:hsqldb:hsql://localhost/VGDreamDB`
 
 ### Etape 2 : Lancer l'exécution du programme
-Dans un troisième et dernier terminal, lancez les commandes suivantes :
+Dans un dernier terminal, à la racine du projet, lancez les commandes suivantes :
 - ```mvn clean install```
 - ```mvn spring-boot:run```
 
@@ -40,4 +40,6 @@ Pour des soucis de compatibilité, nous avons changé le port par défaut, qui e
 Après avoir lancé l'application en ligne de commande ou via votre IDE, l'application web sera accessible à partir l'URL suivant :
 [localhost:8090](http://localhost:8090)
 
-**Remarque :** D'une manière générale, pensez à rafraîchir la page en cas de problème, afin de voir si votre changement a bien été effectué.
+**Remarques :** 
+- D'une manière générale, pensez à rafraîchir la page en cas de problème, afin de voir si votre changement a bien été effectué.
+- Nous avons implémenté un jeu de test de base pour les entités Jeu et Joueur. Vous pouvez réaliser ce test en utilisant `mvn test` à la racine du projet.
