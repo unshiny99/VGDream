@@ -42,4 +42,4 @@ Après avoir lancé l'application en ligne de commande ou via votre IDE, l'appli
 
 **Remarques :** 
 - D'une manière générale, pensez à rafraîchir la page en cas de problème, afin de voir si votre changement a bien été effectué.
-- Nous avons implémenté un jeu de test de base pour les entités Jeu et Joueur. Vous pouvez réaliser ce test en utilisant `mvn test` à la racine du projet.
+- Nous avons implémenté un jeu de test basé sur **JUnit4** pour les entités Jeu et Joueur. Vous pouvez réaliser ce test en utilisant `mvn test` à la racine du projet.
