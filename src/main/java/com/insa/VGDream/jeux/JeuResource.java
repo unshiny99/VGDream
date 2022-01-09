@@ -1,5 +1,6 @@
 package com.insa.VGDream.jeux;
 
+import com.insa.VGDream.joueurs.Joueur;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -7,6 +8,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Path("jeux")
 public class JeuResource {
@@ -22,7 +24,12 @@ public class JeuResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Jeu createJeu(Jeu jeu){
+    public Jeu createJeu(Jeu jeu) {
+        // check si jeu existe déjà
+        for (Jeu curretnJeu : jeuRepository.findAll()) {
+            if (jeu.getNom()==curretnJeu.getNom())
+                return null;
+        }
         return jeuRepository.save(jeu);
     }
 
@@ -71,7 +78,16 @@ public class JeuResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public void putJeu(@PathParam("id") Long id, Jeu jeu) {
-        if (jeuRepository.findById(id).isPresent()) {
+        int nbFound = 0;
+        for (Jeu currentJeu : jeuRepository.findAll()) {
+            if (Objects.equals(currentJeu.getNom(), jeu.getNom())) {
+                // si l'id du jeu ne correspond pas à celui dont c'est le nom
+                if (!Objects.equals(currentJeu.getId(), id)) {
+                    nbFound++;
+                }
+            }
+        }
+        if (jeuRepository.findById(id).isPresent() && nbFound == 0) {
             jeuRepository.putJeu(jeu.getNom(),jeu.getDateSortie(),jeu.getCategorie(),jeu.getDescription(),jeu.getStudioDev(),id);
         }
     }

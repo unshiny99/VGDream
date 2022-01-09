@@ -16,7 +16,7 @@
 
         <form id="form-add-player" class="col-lg-6 mx-auto needs-validation">
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" placeholder="Entrez votre nom" id="nom" name="nom" required>
+                <input type="text" class="form-control" placeholder="Entrez votre nom" id="nom" name="nom" required autocomplete="off">
                 <label for="nom">Votre nom</label>
                 <!--
                 <div class="invalid-feedback">
@@ -26,12 +26,12 @@
             </div>
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" placeholder="Entrez votre prénom" id="prenom"
-                   name="prenom" required>
+                   name="prenom" required autocomplete="off">
                 <label for="prenom">Votre prénom</label>
             </div>
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" placeholder="Entrez votre pseudo" id="pseudo"
-                       name="pseudo" required>
+                       name="pseudo" required autocomplete="off">
                 <label for="pseudo">Votre pseudo</label>
                 <span id='message_user'></span>
             </div>
@@ -72,13 +72,36 @@
             }
 
             $('#password, #password-confirmation').on('keyup', function () {
-                if ($('#password').val() === $('#password-confirmation').val() && $('#password').val()!='') {
-                    $('#save').prop('disabled', false)
-                    $('#message').html('').css('color', 'green')
+                if ($('#password').val() === $('#password-confirmation').val() && $('#password').val()!=='') {
+                    $('#save').prop('disabled', false);
+                    $('#message').html('').css('color', 'green');
                 } else {
-                    $('#message').html('Les mots de passe ne correspondent pas').css('color', 'red')
-                    $('#save').prop('disabled', true)
+                    $('#message').html('Les mots de passe ne correspondent pas').css('color', 'red');
+                    $('#save').prop('disabled', true);
                 }
+            });
+            
+            $("#pseudo").on("keyup", function () {
+                let found = false;
+                $.get("/VGDream/joueurs", function (data) {
+                    for (let i=0; i<data.length;i++) {
+                        if (data[i].pseudo === $("#pseudo").val()) {
+                            found = true;
+                        }
+                    }
+                    if (found) {
+                        $('#message_user').html('Ce pseudo est déjà utilisé').css('color', 'red');
+                        $('#save').prop('disabled', true);
+                    } else {
+                        if ($('#pseudo').val()!=='') {
+                            $('#message_user').html('Pseudonyme autorisé').css('color', 'green');
+                            $('#save').prop('disabled', false);
+                        } else {
+                            $('#message_user').html('Merci d\'entrer une valeur').css('color', 'red')
+                            $('#save').prop('disabled', true);
+                        }
+                    }
+                });
             });
 
             $('#form-add-player').submit(function (e) {

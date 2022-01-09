@@ -15,21 +15,16 @@
 
     <form id="form-modif-player" class="col-lg-6 mx-auto needs-validation">
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" placeholder="Entrez votre nom" id="nom" name="nom" required>
-            <label for="nom">Nom</label>
-            <!--
-            <div class="invalid-feedback">
-                Merci d'entrer un nom.
-            </div>
-            -->
-        </div>
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" placeholder="Entrez votre prenom" id="prenom" name="prenom" required>
-            <label for="prenom">Prénom</label>
-        </div>
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" placeholder="Entrez votre prenom" id="pseudo" name="pseudo" required>
+            <input type="text" class="form-control" placeholder="Entrez votre prenom" id="pseudo" name="pseudo" disabled>
             <label for="pseudo">Pseudo</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" placeholder="Entrez votre nom" id="nom" name="nom" required autocomplete="off">
+            <label for="nom">Nom</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" placeholder="Entrez votre prenom" id="prenom" name="prenom" required autocomplete="off">
+            <label for="prenom">Prénom</label>
         </div>
         <button type="submit" class="btn btn-primary" id="save">Enregistrer</button>
         <a href="updatePlayer.html" class="btn btn-secondary" id="updatepwd">Modifier mon mot de passe</a>
@@ -74,7 +69,30 @@
         $("#delete-link").attr("href",delete_link);
 
         let updatepwd = "updatePassword.html?id=" +id;
-        $("#updatepwd").attr("href", updatepwd)
+        $("#updatepwd").attr("href", updatepwd);
+
+        $("#pseudo").on("keyup", function () {
+            let found = false;
+            $.get("/VGDream/joueurs", function (data) {
+                for (let i=0; i<data.length;i++) {
+                    if (data[i].pseudo === $("#pseudo").val()) {
+                        found = true;
+                    }
+                }
+                if (found) {
+                    $('#message_user').html('Ce pseudo est déjà utilisé').css('color', 'red');
+                    $('#save').prop('disabled', true);
+                } else {
+                    if ($('#pseudo').val()!=='') {
+                        $('#message_user').html('Pseudonyme autorisé').css('color', 'green');
+                        $('#save').prop('disabled', false);
+                    } else {
+                        $('#message_user').html('Merci d\'entrer une valeur').css('color', 'red')
+                        $('#save').prop('disabled', true);
+                    }
+                }
+            });
+        });
 
         $('#form-modif-player').submit(function(e){
             e.preventDefault();

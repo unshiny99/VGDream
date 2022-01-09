@@ -16,16 +16,11 @@
 
         <form id="form-modif-game" class="col-lg-6 mx-auto needs-validation">
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" placeholder="Entrez le nom exact" id="nom" name="nom" required>
+                <input type="text" class="form-control" placeholder="Entrez le nom exact" id="nom" name="nom" disabled>
                 <label for="nom">Nom du jeu</label>
-                <!--
-                <div class="invalid-feedback">
-                    Merci d'entrer un nom.
-                </div>
-                -->
             </div>
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" placeholder="Entrez le studio du jeu" id="studioDev" name="studioDev" required>
+                <input type="text" class="form-control" placeholder="Entrez le studio du jeu" id="studioDev" name="studioDev" required autocomplete="off">
                 <label for="studioDev">Studio de développement</label>
             </div>
             <div class="form-floating mb-3">
@@ -38,7 +33,7 @@
             </div>
             <div class="form-floating mb-3">
                 <!-- avoir une liste de catégorie enregistrée en BD ? -->
-                <input type="text" class="form-control" placeholder="Entrez la catégorie" id="categorie" name="categorie" required>
+                <input type="text" class="form-control" placeholder="Entrez la catégorie" id="categorie" name="categorie" required autocomplete="off">
                 <label for="categorie">Catégorie principale</label>
             </div>
             <button type="submit" class="btn btn-primary" id="save">Enregistrer</button>

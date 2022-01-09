@@ -16,16 +16,12 @@
 
         <form id="form-add-game" class="col-lg-6 mx-auto needs-validation">
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" placeholder="Entrez le nom exact" id="nom" name="nom" required>
+                <input type="text" class="form-control" placeholder="Entrez le nom exact" id="nom" name="nom" required autocomplete="off">
                 <label for="nom">Nom du jeu</label>
-                <!--
-                <div class="invalid-feedback">
-                    Merci d'entrer un nom.
-                </div>
-                -->
+                <span id="message-nom"></span>
             </div>
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" placeholder="Entrez le studio du jeu" id="studioDev" name="studioDev" required>
+                <input type="text" class="form-control" placeholder="Entrez le studio du jeu" id="studioDev" name="studioDev" required autocomplete="off">
                 <label for="studioDev">Studio de développement</label>
             </div>
             <div class="form-floating mb-3">
@@ -38,7 +34,7 @@
             </div>
             <div class="form-floating mb-3">
                 <!-- avoir une liste de catégorie enregistrée en BD ? -->
-                <input type="text" class="form-control" placeholder="Entrez la catégorie" id="categorie" name="categorie" required>
+                <input type="text" class="form-control" placeholder="Entrez la catégorie" id="categorie" name="categorie" required autocomplete="off">
                 <label for="categorie">Catégorie principale</label>
             </div>
             <button type="submit" class="btn btn-primary" id="save">Enregistrer</button>
@@ -62,6 +58,29 @@
                 $("#navbarSupportedContent .navbar-nav .nav-item .active").removeClass("active");
             });
             $("#footer").load("../layout/footer.html");
+
+            $("#nom").on("keyup", function () {
+                let found = false;
+                $.get("/VGDream/jeux", function (data) {
+                    for (let i=0; i<data.length;i++) {
+                        if (data[i].nom === $("#nom").val()) {
+                            found = true;
+                        }
+                    }
+                    if (found) {
+                        $('#message-nom').html('Ce jeu est déjà enregistré').css('color', 'red');
+                        $('#save').prop('disabled', true);
+                    } else {
+                        if ($('#nom').val()!=='') {
+                            $('#message-nom').html('Jeu autorisé').css('color', 'green');
+                            $('#save').prop('disabled', false);
+                        } else {
+                            $('#message-nom').html('Merci d\'entrer un nom de jeu').css('color', 'red')
+                            $('#save').prop('disabled', true);
+                        }
+                    }
+                });
+            });
 
             $('#form-add-game').submit(function(e){
                 e.preventDefault();

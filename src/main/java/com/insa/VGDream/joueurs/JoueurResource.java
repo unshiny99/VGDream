@@ -28,6 +28,11 @@ public class JoueurResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Joueur createJoueur(Joueur joueur) {
+        // check si pseudo existe déjà
+        for (Joueur currentJoueur : joueurRepository.findAll()) {
+            if (Objects.equals(currentJoueur.getPseudo(), joueur.getPseudo()))
+                return null;
+        }
         return joueurRepository.save(joueur);
     }
 
@@ -54,7 +59,17 @@ public class JoueurResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public void putJoueur(@PathParam("id") Long id, Joueur joueur) {
-        if (joueurRepository.findById(id).isPresent()) {
+        int nbFound = 0;
+        for (Joueur currentJoueur : joueurRepository.findAll()) {
+            if (Objects.equals(currentJoueur.getPseudo(), joueur.getPseudo())) {
+                // si l'id du joueur ne correspond pas à celui qu'on modifie, on détecte
+                if (!Objects.equals(currentJoueur.getId(), id)) {
+                    nbFound++;
+                }
+            }
+        }
+        // check if we do not update pseudo with existing one
+        if (joueurRepository.findById(id).isPresent() && nbFound == 0) {
             joueurRepository.putJoueur(joueur.getNom(), joueur.getPrenom(), joueur.getPseudo(),id);
         }
     }
