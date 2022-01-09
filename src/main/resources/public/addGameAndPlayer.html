@@ -57,29 +57,40 @@
             $("#add-game").addClass("active");
         });
         $("#footer").load("/layout/footer.html");
+        //var selectedPlayer = "";
 
-        $.get("VGDream/joueurs", function (data) {
+        $.get("/VGDream/joueurs", function (data) {
             $.each(data, function (){
                 $("#select-profile").append(
                     '<option value="'+ this.id +'">'+ this.pseudo+'</option>'
                 );
             });
+            var selectedPlayer = $("#select-profile").children("option:nth-child(1)").val();
+            getNonJeu(selectedPlayer);
+
+            $("#select-profile").change(function(){
+                selectedPlayer = $(this).children("option:selected").val();
+                $("#select-game").empty();
+                getNonJeu(selectedPlayer);
+            });
         });
 
-        $.get("VGDream/jeux", function jeu(data){
-           $.each(data, function (){
-               $("#select-game").append(
-                   '<option value="'+ this.id +'">'+ this.nom+'</option>'
-               );
-           });
-        });
+        function getNonJeu(selectedPlayer) {
+            $.get("/VGDream/joueurs/"+ selectedPlayer +"/non-jeux", function jeu(data){
+                $.each(data, function (){
+                    $("#select-game").append(
+                        '<option value="'+ this.id +'">'+ this.nom+'</option>'
+                    );
+                });
+            });
+        }
 
         $('#form-add-game-to-player').submit(function (e) {
             e.preventDefault();
             var idJoueur = $('#select-profile option:selected').val();
             var idJeu = $('#select-game option:selected').val();
 
-            $.get("VGDream/jeux/"+idJeu, function (jeuData) {
+            $.get("/VGDream/jeux/"+idJeu, function (jeuData) {
                 $.ajax({
                     url:"VGDream/joueurs/"+idJoueur,
                     type: 'put',

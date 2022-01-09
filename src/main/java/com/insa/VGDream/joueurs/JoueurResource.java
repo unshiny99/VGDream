@@ -68,7 +68,7 @@ public class JoueurResource {
                 }
             }
         }
-        // check if we do not update pseudo with existing one
+        // vérification de la condition associée
         if (joueurRepository.findById(id).isPresent() && nbFound == 0) {
             joueurRepository.putJoueur(joueur.getNom(), joueur.getPrenom(), joueur.getPseudo(),id);
         }
