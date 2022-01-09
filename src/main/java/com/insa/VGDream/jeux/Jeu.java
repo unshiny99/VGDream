@@ -20,7 +20,7 @@ public class Jeu implements Serializable {
     private Long id;
     @NotEmpty
     private String nom, studioDev;
-    @Lob
+    @Column(length = 4000) // change defaut value (255)
     private String description;
     private String categorie;
     private Date dateSortie;
